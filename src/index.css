@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .active-sidebar {
+        @apply px-7 flex items-center py-2  bg-alpha text-primary border-l-4 border-primary;
+    }
+    .inactive-sidebar {
+        @apply px-7 flex items-center py-2 border-l-4 hover:text-primary;
+    }
+}
+
+@layer base {
+    ::-webkit-scrollbar-thumb {
+        @apply bg-transparent shadow-sm;
+    }
+    ::-webkit-scrollbar {
+        @apply w-1 bg-transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-none bg-gray-300 /*color trackbar*/;
+    }
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
