@@ -6,7 +6,7 @@ import RightSidebar from "../../components/RightSidebar";
 
 function Public() {
     return (
-        <div className="w-full h-full flex flex-col bg-skin text-main">
+        <div className="w-full h-full flex flex-col bg-primary text-main">
             <div className="flex-auto flex">
                 <div className="flex flex-none w-leftSidebar bg-alpha">
                     <LeftSidebar />

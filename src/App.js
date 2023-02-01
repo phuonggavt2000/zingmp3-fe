@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Public } from "./page/public";
 import path from "./ultis/path";
 import routes from "./routes/routes";
+import "tippy.js/dist/tippy.css";
 function App() {
     const { test, homeData } = useSelector((state) => state.app);
     console.log("test", homeData);

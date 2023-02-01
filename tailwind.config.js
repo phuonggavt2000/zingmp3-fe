@@ -7,7 +7,6 @@ module.exports = {
                 primary: "#0f7070",
                 secondary: "#ecc94b",
                 main: "#32323d",
-                skin: "#0000001a",
                 placeholder: "#757575",
                 // ...
             },
@@ -20,9 +19,13 @@ module.exports = {
                 header: "70px",
             },
             backgroundColor: {
-                skin: "#ced9d9",
+                primary: "#ced9d9",
                 alpha: "hsla(0,0%,100%,0.3)",
                 player: "#c0d8d8",
+                hoverIcon: "#ccd4d4", // icon
+            },
+            borderColor: {
+                primary: "#0000001a",
             },
         },
         fontFamily: {
