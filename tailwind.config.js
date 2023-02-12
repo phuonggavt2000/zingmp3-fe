@@ -6,8 +6,10 @@ module.exports = {
             colors: {
                 primary: "#0f7070",
                 secondary: "#ecc94b",
-                main: "#32323d",
+                main: "#32323d", // text
                 placeholder: "#757575",
+                nav: "#0f7070", // hover nav
+                alpha: "hsla(0,0%,100%,0.3)",
                 // ...
             },
             width: {
@@ -20,13 +22,10 @@ module.exports = {
             },
             backgroundColor: {
                 primary: "#ced9d9",
-                alpha: "hsla(0,0%,100%,0.3)",
                 player: "#c0d8d8",
                 hoverIcon: "#ccd4d4", // icon
             },
-            borderColor: {
-                primary: "#0000001a",
-            },
+            borderColor: {},
         },
         fontFamily: {
             inter: ["Inter", "sans-serif"],
