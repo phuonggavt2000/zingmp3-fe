@@ -10,6 +10,7 @@ import { AiOutlineStar, AiOutlinePlus, AiOutlineSetting } from "react-icons/ai";
 import { ImPrevious2, ImNext2 } from "react-icons/im";
 import { BsSearch } from "react-icons/bs";
 import { RiVipLine } from "react-icons/ri";
+import { GrClose } from "react-icons/gr";
 
 const icons = {
     MdMusicVideo,
@@ -26,5 +27,6 @@ const icons = {
     BsSearch,
     RiVipLine,
     AiOutlineSetting,
+    GrClose,
 };
 export default icons;

@@ -1,11 +1,11 @@
 import icons from "../ultis/icons";
 import Search from "./Search";
 import Tippy from "@tippyjs/react";
-import theme from "../asset/theme.png";
 import { menuHeader } from "../ultis/menuHeader";
+import ModalTheme from "./ModalTheme";
 
 function Header() {
-    const { ImPrevious2, ImNext2, RiVipLine } = icons;
+    const { ImPrevious2, ImNext2 } = icons;
     return (
         <div className="flex h-full px-14 items-center gap-2  ">
             <div className="flex text-[23px] gap-2 text-gray-400">
@@ -24,6 +24,7 @@ function Header() {
                     </Tippy>
                 ))}
             </div>
+            <ModalTheme />
         </div>
     );
 }

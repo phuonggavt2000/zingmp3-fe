@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../asset/logo.svg";
 import { primaryMenu, subMenu } from "../ultis/menuSidebar";
-import icons from "../ultis/icons";
 import { AiOutlinePlus } from "react-icons/ai";
 
 function LeftSidebar() {

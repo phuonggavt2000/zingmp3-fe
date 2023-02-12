@@ -7,7 +7,7 @@
         @apply px-7 flex items-center py-2  bg-alpha text-primary border-l-4 border-primary;
     }
     .inactive-sidebar {
-        @apply px-7 flex items-center py-2 border-l-4 hover:text-primary;
+        @apply px-7 flex items-center py-2 border-l-4 hover:text-nav;
     }
 }
 

@@ -7,7 +7,7 @@ export const getHome = () =>
                 url: "/home",
                 method: "get",
             });
-            resolve(response.data.data);
+            resolve(response);
         } catch (error) {
             reject(error);
         }

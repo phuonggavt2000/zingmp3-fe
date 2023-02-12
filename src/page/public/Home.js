@@ -1,16 +1,11 @@
-import { useEffect } from "react";
-import * as apis from "../../apis";
+import Slider from "../../components/Slider";
 
 function Home() {
-    useEffect(() => {
-        const getHome = async () => {
-            const dataHome = await apis.getHome();
-            console.log(dataHome);
-        };
-        getHome();
-    }, []);
-
-    return <div>Home</div>;
+    return (
+        <div>
+            <Slider />
+        </div>
+    );
 }
 
 export default Home;
