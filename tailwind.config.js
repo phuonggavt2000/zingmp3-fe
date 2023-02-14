@@ -9,6 +9,7 @@ module.exports = {
                 sub: "rgb(var(--sub))", // text sub
                 placeholder: "rgb(var(--placeholder))",
                 nav: "rgb(var(--nav))", // hover nav
+                "nav-text": "rgb(var(--nav-text))", // hover nav
                 alpha: "hsla(var(--alpha) / 0.1)",
                 // ...
             },
