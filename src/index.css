@@ -7,7 +7,7 @@
         @apply px-7 flex items-center py-2  bg-alpha text-primary border-l-4 border-primary;
     }
     .inactive-sidebar {
-        @apply px-7 flex items-center py-2 border-l-4 hover:text-nav;
+        @apply px-7 flex items-center py-2 border-l-4 hover:text-nav border-transparent;
     }
 }
 
@@ -20,6 +20,30 @@
     }
     ::-webkit-scrollbar-thumb {
         @apply rounded-none bg-gray-300 /*color trackbar*/;
+    }
+
+    .theme-green-light {
+        --primary: 15 112 112;
+        --main: 50 50 61;
+        --sub: 255 255 255;
+        --placeholder: 117 117 117;
+        --nav: 15 112 112;
+        --alpha: 0 0% 100%;
+        --bg-screen: 206 217 217;
+        --bg-player: 192 216 216;
+        --bg-hover-icon: 204 212 212;
+    }
+
+    .theme-dark {
+        --primary: 155 77 224;
+        --nav-text: 160 160 149;
+        --main: 255 255 255;
+        --sub: 255 255 255;
+        --placeholder: 238 238 238;
+        --nav: 255 255 255;
+        --alpha: 0 0% 100%;
+        --bg-screen: 30 30 30;
+        --bg-player: 24 24 24;
     }
 }
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
