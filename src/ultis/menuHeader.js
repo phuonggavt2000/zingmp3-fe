@@ -8,6 +8,7 @@ export const menuHeader = [
     {
         content: "Chủ Đề",
         icon: <img src={theme} alt="error" className="w-[20px] h-[20px]" />,
+        modal: true,
     },
     {
         content: "Nâng Cấp Vip",

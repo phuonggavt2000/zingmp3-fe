@@ -4,12 +4,12 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: "#0f7070",
-                secondary: "#ecc94b",
-                main: "#32323d", // text
-                placeholder: "#757575",
-                nav: "#0f7070", // hover nav
-                alpha: "hsla(0,0%,100%,0.3)",
+                primary: "rgb(var(--primary))",
+                main: "rgb(var(--main))", // text
+                sub: "rgb(var(--sub))", // text sub
+                placeholder: "rgb(var(--placeholder))",
+                nav: "rgb(var(--nav))", // hover nav
+                alpha: "hsla(var(--alpha) / 0.1)",
                 // ...
             },
             width: {
@@ -21,10 +21,11 @@ module.exports = {
                 header: "70px",
             },
             backgroundColor: {
-                primary: "#ced9d9",
-                player: "#c0d8d8",
-                hoverIcon: "#ccd4d4", // icon
+                screen: "rgb(var(--bg-screen))",
+                player: "rgb(var(--bg-player))",
+                hoverIcon: "rgb(var(--bg-hover-icon))", // icon
             },
+            backgroundImage: {},
             borderColor: {},
         },
         fontFamily: {

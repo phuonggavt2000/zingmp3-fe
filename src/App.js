@@ -14,7 +14,7 @@ function App() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <div className="h-screen w-screen font-inter">
+        <div className="h-screen w-screen font-inter ">
             <Routes>
                 <Route path={path.PUBLIC} element={<Public />}>
                     {routes.map((route, index) => {
