@@ -6,7 +6,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 function LeftSidebar() {
     return (
         <div
-            className=" flex-auto flex flex-col pointer-events-auto text-[14px] font-bold h-[calc(100vh-90px)]"
+            className=" flex-auto w-full flex flex-col pointer-events-auto text-[14px] font-bold h-[calc(100vh-90px)]"
             draggable={false}
         >
             <div className="h-[70px] w-full px-7 flex  items-center ">

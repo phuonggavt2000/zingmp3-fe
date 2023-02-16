@@ -6,11 +6,16 @@ import {
 import { GiChart } from "react-icons/gi";
 import { BiNews, BiCategoryAlt } from "react-icons/bi";
 import { BsMusicNoteBeamed } from "react-icons/bs";
-import { AiOutlineStar, AiOutlinePlus, AiOutlineSetting } from "react-icons/ai";
+import {
+    AiOutlineStar,
+    AiOutlinePlus,
+    AiOutlineSetting,
+    AiOutlineClose,
+} from "react-icons/ai";
 import { ImPrevious2, ImNext2 } from "react-icons/im";
 import { BsSearch } from "react-icons/bs";
 import { RiVipLine } from "react-icons/ri";
-import { GrClose } from "react-icons/gr";
+import { MdArrowForwardIos, MdArrowBackIosNew } from "react-icons/md";
 
 const icons = {
     MdMusicVideo,
@@ -27,6 +32,8 @@ const icons = {
     BsSearch,
     RiVipLine,
     AiOutlineSetting,
-    GrClose,
+    MdArrowBackIosNew,
+    MdArrowForwardIos,
+    AiOutlineClose,
 };
 export default icons;

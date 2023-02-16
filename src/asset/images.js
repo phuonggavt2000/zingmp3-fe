@@ -1,5 +1,5 @@
 const images = {
-    themeDark: require("./theme/themeBlue.jpg"),
+    themeDark: require("./theme/themeDark.jpg"),
     themePurple: require("./theme/ThemePurple.jpg"),
     themeBrown: require("./theme/themeBrown.jpg"),
     themeBlue: require("./theme/themeBlue.jpg"),

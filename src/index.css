@@ -21,6 +21,9 @@
     ::-webkit-scrollbar-thumb {
         @apply rounded-none bg-gray-300 /*color trackbar*/;
     }
+    .overlay {
+        overflow: overlay;
+    }
 
     .theme-green-light {
         --primary: 15 112 112;

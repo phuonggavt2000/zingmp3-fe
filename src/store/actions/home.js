@@ -22,3 +22,10 @@ export const getHome = () => async (dispatch) => {
         });
     }
 };
+
+export const updateHeader = (value) => (dispatch) => {
+    dispatch({
+        type: actionTypes.UPDATE_HEADER,
+        scrollHeader: value,
+    });
+};
