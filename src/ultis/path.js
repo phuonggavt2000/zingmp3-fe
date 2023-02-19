@@ -7,8 +7,9 @@ const path = {
     FOLLOW: "follow",
     NEWMUSIC: "newmusic",
     HUB: "hub",
-    TOP: "TOP100",
+    TOP: "top-100",
     MV: "mv",
+    ALBUM: "album/*",
 };
 
 export default path;

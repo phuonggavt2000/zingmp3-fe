@@ -4,12 +4,10 @@ import Tippy from "@tippyjs/react";
 import { menuHeader } from "../ultis/menuHeader";
 import ModalTheme from "./ModalTheme";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
-function Header() {
+function Header({ scrollTop }) {
     const { ImPrevious2, ImNext2 } = icons;
     const [modalTheme, setModalTheme] = useState(false);
-    const scrollHeader = useSelector((state) => state.app.scrollHeader);
 
     const handleModalTheme = (modal) => {
         if (modal) {
@@ -20,7 +18,7 @@ function Header() {
     return (
         <div
             className={`fixed transition-all  top-0 right-0 w-[calc(100vw-240px)] h-[70px] z-[99999] ${
-                scrollHeader > 60 ? "bg-header" : "bg-transparent"
+                scrollTop > 60 ? "bg-header shadow-lg" : "bg-transparent "
             }`}
         >
             <div className="flex h-full px-14 items-center gap-2  select-none">

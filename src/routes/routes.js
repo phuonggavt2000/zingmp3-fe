@@ -1,4 +1,4 @@
-import { Follow, Home, Login, MyMusic, ZingChart } from "../page/public";
+import { Follow, Home, Login, MyMusic, ZingChart, Album } from "../page/public";
 import Hub from "../page/public/Hub";
 import MV from "../page/public/MV";
 import NewMusic from "../page/public/NewMusic";
@@ -41,6 +41,10 @@ const routes = [
     {
         path: path.MV,
         component: MV,
+    },
+    {
+        path: path.ALBUM,
+        component: Album,
     },
 ];
 

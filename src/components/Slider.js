@@ -1,22 +1,19 @@
-import { useSelector, useDispatch } from "react-redux";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/style-prop-object */
+/* eslint-disable no-unused-vars */
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getArrSlider } from "../ultis/fn";
-import * as actions from "../store/actions";
-import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import icons from "../ultis/icons";
 import { useCallback } from "react";
 const { MdArrowBackIosNew, MdArrowForwardIos } = icons;
 var intervalId;
 
-function Slider() {
-    const banner = useSelector((state) => state.app.banner);
+function Slider({ banner }) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(2);
     const [isAuto, setIsAuto] = useState(true);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    console.log("banner", banner);
 
     // animation for banner
     useEffect(() => {
@@ -28,6 +25,7 @@ function Slider() {
         return () => {
             intervalId && clearInterval(intervalId);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [min, max, isAuto]);
     const handleAnimationBanner = (step) => {
         const sliderEls = document.getElementsByClassName("slider-item");
@@ -91,6 +89,7 @@ function Slider() {
     const handleClickBanner = (item) => {
         if (item?.type === 1) {
         } else if (item?.type === 4) {
+            // eslint-disable-next-line no-unused-vars
             const albumPath = item?.link?.split(".")[0];
         } else {
         }

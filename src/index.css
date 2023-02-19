@@ -9,6 +9,12 @@
     .inactive-sidebar {
         @apply px-7 flex items-center py-2 border-l-4 hover:text-nav border-transparent text-nav-text;
     }
+    .link-artist {
+        @apply text-secondary comma cursor-pointer;
+    }
+    .link-artist:hover {
+        @apply text-primary underline comma;
+    }
 }
 
 @layer base {
@@ -22,7 +28,16 @@
         @apply rounded-none bg-gray-300 /*color trackbar*/;
     }
     .overlay {
-        overflow: overlay;
+        overflow: hidden;
+        overflow-y: overlay;
+    }
+
+    button {
+        outline: none;
+    }
+
+    .comma:not(:last-child):after {
+        content: ",";
     }
 
     .theme-green-light {
@@ -36,6 +51,8 @@
         --bg-player: 192 216 216;
         --bg-hover-icon: 204 212 212;
         --nav-text: 50 50 61;
+        --dark-alpha-50: 0 0 0;
+        --secondary: 0 0 0;
     }
 
     .theme-dark {
@@ -48,6 +65,8 @@
         --alpha: 0 0% 100%;
         --bg-screen: 30 30 30;
         --bg-player: 24 24 24;
+        --dark-alpha-50: 0 0 0;
+        --secondary: 192 187 187;
     }
 
     .theme-purple {
@@ -60,6 +79,8 @@
         --placeholder: 238 238 238;
         --sub: 255 255 255;
         --bg-player: 23 15 35;
+        --dark-alpha-50: 0 0 0;
+        --secondary: 192 187 187;
     }
 
     .theme-blue {
@@ -72,6 +93,8 @@
         --placeholder: 238 238 238;
         --sub: 255 255 255;
         --bg-player: 15 26 46;
+        --dark-alpha-50: 0 0 0;
+        --secondary: 192 187 187;
     }
 
     .theme-brown {
@@ -84,6 +107,8 @@
         --placeholder: 238 238 238;
         --sub: 255 255 255;
         --bg-player: 37 27 24;
+        --dark-alpha-50: 0 0 0;
+        --secondary: 192 187 187;
     }
 
     .theme-blue-light {
@@ -96,6 +121,8 @@
         --placeholder: 238 238 238;
         --sub: 255 255 255;
         --bg-player: 22 42 69;
+        --dark-alpha-50: 0 0 0;
+        --secondary: 192 187 187;
     }
 }
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");

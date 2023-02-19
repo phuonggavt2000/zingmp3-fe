@@ -12,6 +12,8 @@ module.exports = {
                 "nav-text": "rgb(var(--nav-text))", // hover nav
                 alpha: "hsla(var(--alpha) / 0.1)",
                 header: "rgba(var(--bg-screen) / 0.9)",
+                secondary: "rgb(var(--secondary) / 0.6)",
+                "dark-alpha-50": "rgba(var(--dark-alpha-50)/ 0.5)",
                 // ...
             },
             width: {
@@ -139,5 +141,5 @@ module.exports = {
             7: "7 7 0%",
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/line-clamp")],
 };

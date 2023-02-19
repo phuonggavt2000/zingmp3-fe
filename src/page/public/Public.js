@@ -1,17 +1,17 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
 import LeftSidebar from "../../components/LeftSidebar";
 import Player from "../../components/Player";
-import RightSidebar from "../../components/RightSidebar";
-import { updateHeader } from "../../store/actions";
 
 function Public() {
     const theme = useSelector((state) => state.app.theme);
-    const dispatch = useDispatch();
-    console.log("public");
+    const [scrollTop, setScrollTop] = useState(0);
+    console.log(scrollTop);
+
     const handleScroll = (e) => {
-        dispatch(updateHeader(e.target.scrollTop));
+        setScrollTop(e.target.scrollTop);
     };
     return (
         <div
@@ -22,9 +22,9 @@ function Public() {
                     <LeftSidebar />
                 </div>
                 <div className="flex-auto w-[calc(100vw-240px)] flex flex-col h-full">
-                    <Header />
+                    <Header scrollTop={scrollTop} />
                     <div
-                        className=" flex-auto  h-full overlay"
+                        className=" flex-auto  h-full overflow-hidden hover:overlay px-16 py-14"
                         onScroll={handleScroll}
                     >
                         <Outlet />

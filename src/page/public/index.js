@@ -4,3 +4,4 @@ export { default as Login } from "./Login";
 export { default as Follow } from "./Follow";
 export { default as ZingChart } from "./ZingChart";
 export { default as MyMusic } from "./MyMusic";
+export { default as Album } from "./Album";

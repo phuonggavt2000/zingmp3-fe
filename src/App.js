@@ -6,6 +6,8 @@ import routes from "./routes/routes";
 import "tippy.js/dist/tippy.css";
 import { useEffect } from "react";
 import * as actions from "./store/actions";
+import "moment/locale/vi";
+
 function App() {
     const dispatch = useDispatch();
 
@@ -14,7 +16,7 @@ function App() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <div className="h-screen w-screen font-inter ">
+        <div className="h-screen w-screen font-inter select-none">
             <Routes>
                 <Route path={path.PUBLIC} element={<Public />}>
                     {routes.map((route, index) => {

@@ -11,7 +11,14 @@ function ModalTheme({ ismodal, closemodal }) {
         dispatch(actions.changeTheme(classTheme));
     };
     return (
-        <div className="bg-alpha fixed inset-0 flex justify-center items-center">
+        <div
+            onClick={(event) => {
+                if (event.target === event.currentTarget) {
+                    closemodal(true);
+                }
+            }}
+            className="bg-alpha fixed inset-0 flex justify-center items-center"
+        >
             <div className="h-[90vh] w-[60vw]  font-bold bg-screen rounded-xl overflow-hidden px-7 py-6 shadow-2xl">
                 <div className="flex items-center text-2xl capitalize relative">
                     <span>Giao diện </span>
