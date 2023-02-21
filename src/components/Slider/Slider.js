@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/style-prop-object */
 /* eslint-disable no-unused-vars */
-import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { getArrSlider } from "../ultis/fn";
+import { getArrSlider } from "../../ultis/fn";
 import Button from "./Button";
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 import { useCallback } from "react";
 const { MdArrowBackIosNew, MdArrowForwardIos } = icons;
 var intervalId;

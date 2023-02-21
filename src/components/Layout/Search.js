@@ -1,4 +1,4 @@
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 
 function Search() {
     const { BsSearch } = icons;

@@ -1,4 +1,4 @@
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 
 function PlayMusic() {
     const { ImPrevious2, ImNext2, BsPlayCircle, MdOutlineRepeat, BiTransfer } =

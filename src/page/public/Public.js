@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import Header from "../../components/Header";
-import LeftSidebar from "../../components/LeftSidebar";
-import Player from "../../components/Player";
+import Header from "../../components/Layout/Header";
+import LeftSidebar from "../../components/Layout/LeftSidebar";
+import Player from "../../components/Layout/Player";
 
 function Public() {
     const theme = useSelector((state) => state.app.theme);
@@ -24,7 +24,7 @@ function Public() {
                 <div className="flex-auto w-[calc(100vw-240px)] flex flex-col h-full">
                     <Header scrollTop={scrollTop} />
                     <div
-                        className=" flex-auto  h-full overflow-hidden hover:overlay px-16 py-14"
+                        className=" flex-auto  h-full overflow-hidden hover:overlay px-16 pt-14"
                         onScroll={handleScroll}
                     >
                         <Outlet />

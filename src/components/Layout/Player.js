@@ -1,6 +1,6 @@
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 import Tippy from "@tippyjs/react";
-import PlayMusic from "./PlayMusic";
+import PlayMusic from "../Player/PlayMusic";
 import { memo } from "react";
 
 function Player() {
@@ -20,7 +20,7 @@ function Player() {
                     </span>
                 </div>
                 <Tippy content="Xem thêm">
-                    <button className="rounded-full p-2 hover:bg-alpha">
+                    <button className="btn-primary">
                         <CgMoreAlt />
                     </button>
                 </Tippy>

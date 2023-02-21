@@ -1,8 +1,8 @@
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 import Tippy from "@tippyjs/react";
-import optionBgs from "../ultis/optionBgs";
+import optionBgs from "../../ultis/optionBgs";
 import { useDispatch } from "react-redux";
-import * as actions from "../store/actions";
+import * as actions from "../../store/actions";
 
 function ModalTheme({ ismodal, closemodal }) {
     const dispatch = useDispatch();

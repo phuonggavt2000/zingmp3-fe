@@ -1,6 +1,6 @@
-import NewMusic from "../../components/NewMusic";
-import Slider from "../../components/Slider";
-import Playlist from "../../components/Playlist";
+import NewMusic from "../../components/NewMusic/NewMusic";
+import Slider from "../../components/Slider/Slider";
+import Playlist from "../../components/Shared/Playlist";
 import { useSelector } from "react-redux";
 import { memo } from "react";
 

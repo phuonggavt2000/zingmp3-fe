@@ -15,6 +15,10 @@
     .link-artist:hover {
         @apply text-primary underline comma;
     }
+
+    .btn-primary {
+        @apply rounded-full p-2 hover:bg-alpha;
+    }
 }
 
 @layer base {

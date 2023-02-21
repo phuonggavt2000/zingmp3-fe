@@ -1,8 +1,8 @@
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 import Search from "./Search";
 import Tippy from "@tippyjs/react";
-import { menuHeader } from "../ultis/menuHeader";
-import ModalTheme from "./ModalTheme";
+import { menuHeader } from "../../ultis/menuHeader";
+import ModalTheme from "../Modal/ModalTheme";
 import { useState } from "react";
 
 function Header({ scrollTop }) {

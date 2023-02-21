@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import {} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 import moment from "moment/moment";
 
 function NewMusic({ newMusics = {} }) {
@@ -54,7 +53,7 @@ function NewMusic({ newMusics = {} }) {
                             onClick={() => changeTypeMusic(index, value.type)}
                             className={`outline-none  px-6 py-1 text-xs uppercase rounded-full ${
                                 index === activeStatus
-                                    ? "bg-primary"
+                                    ? "bg-primary text-white"
                                     : "border border-alpha hover:brightness-90"
                             }`}
                         >

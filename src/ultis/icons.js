@@ -5,7 +5,11 @@ import {
 } from "react-icons/md";
 import { GiChart } from "react-icons/gi";
 import { BiNews, BiCategoryAlt, BiTransfer } from "react-icons/bi";
-import { BsMusicNoteBeamed, BsPlayCircle } from "react-icons/bs";
+import {
+    BsMusicNoteBeamed,
+    BsPlayCircle,
+    BsFillPlayFill,
+} from "react-icons/bs";
 import {
     AiOutlineStar,
     AiOutlinePlus,
@@ -49,5 +53,6 @@ const icons = {
     BsPlayCircle,
     MdOutlineRepeat,
     AiOutlineHeart,
+    BsFillPlayFill,
 };
 export default icons;

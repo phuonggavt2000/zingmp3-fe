@@ -1,4 +1,4 @@
-import icons from "../ultis/icons";
+import icons from "../../ultis/icons";
 import Tippy from "@tippyjs/react";
 import { useNavigate } from "react-router-dom";
 

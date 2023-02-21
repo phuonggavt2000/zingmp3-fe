@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import logo from "../asset/logo.svg";
-import { primaryMenu, subMenu } from "../ultis/menuSidebar";
+import logo from "../../asset/logo.svg";
+import { primaryMenu, subMenu } from "../../ultis/menuSidebar";
 import { AiOutlinePlus } from "react-icons/ai";
 import { memo } from "react";
 
