@@ -12,3 +12,18 @@ export const getHome = () =>
             reject(error);
         }
     });
+export const getPlaylist = (id) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios({
+                url: "/detailplaylist",
+                method: "get",
+                params: {
+                    id,
+                },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });

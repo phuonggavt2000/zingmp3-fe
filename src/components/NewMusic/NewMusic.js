@@ -1,16 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import icons from "../../ultis/icons";
-import moment from "moment/moment";
+import Music from "./Music";
 
-function NewMusic({ newMusics = {} }) {
+function NewMusic() {
+    const newMusics = useSelector((state) => state.app.newMusic);
     const navigate = useNavigate();
-    const { AiOutlineRight, FaPlay } = icons;
+    const { AiOutlineRight } = icons;
 
     const [activeStatus, setActiveStatus] = useState(0);
     const [typeMusic, setTypeMusic] = useState("all");
     const [limitedMusics, setLimitedMusic] = useState([]);
+    console.log("limitedMusics:", limitedMusics);
 
     const handleNavigate = (path = "/newMusic") => {
         navigate(path);
@@ -72,37 +75,14 @@ function NewMusic({ newMusics = {} }) {
             </div>
             <div className="grid grid-cols-3 gap-x-6">
                 {limitedMusics.map((newMusic, index) => (
-                    <div
+                    <Music
+                        title={newMusic.title}
+                        img={newMusic.thumbnail}
+                        artists={newMusic.artists}
+                        releaseDate={newMusic.releaseDate}
                         key={index}
-                        className="flex items-center gap-x-2 p-3 group hover:bg-alpha rounded-md"
-                    >
-                        <div className="h-[60px] w-[60px] rounded-md overflow-hidden relative flex">
-                            <img
-                                alt=""
-                                src={newMusic.thumbnail}
-                                className="flex-shrink-0"
-                            />
-                            <div className="absolute cursor-pointer opacity-0 group-hover:opacity-100 inset-0 h-full w-full z-10 bg-dark-alpha-50 flex items-center justify-center">
-                                <FaPlay />
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-y-1">
-                            <span className="text-sm capitalize whitespace-nowrap font-semibold">
-                                {newMusic.title}
-                            </span>
-                            <div className="text-xs capitalize flex gap-x-1 text-secondary whitespace-nowrap font-semibold">
-                                {newMusic.artists.map((artist, index) => (
-                                    <span className="link-artist" key={index}>
-                                        {artist.name}
-                                    </span>
-                                ))}
-                            </div>
-                            <span className="text-xs capitalize text-secondary  font-semibold">
-                                {moment.unix(newMusic.releaseDate).fromNow()}
-                            </span>
-                        </div>
-                    </div>
+                        idSong={newMusic.encodeId}
+                    />
                 ))}
             </div>
         </div>

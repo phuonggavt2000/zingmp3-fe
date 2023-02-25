@@ -19,6 +19,15 @@
     .btn-primary {
         @apply rounded-full p-2 hover:bg-alpha;
     }
+
+    .range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 8px;
+        width: 8px;
+        background-color: white;
+        border-radius: 100%;
+        box-shadow: -405px 0 0 400px white;
+    }
 }
 
 @layer base {

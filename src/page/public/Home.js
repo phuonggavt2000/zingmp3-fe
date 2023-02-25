@@ -5,15 +5,15 @@ import { useSelector } from "react-redux";
 import { memo } from "react";
 
 function Home() {
-    const { banner, hAutoTheme1, newMusic, hArtistTheme } = useSelector(
-        (state) => state.app
-    );
+    const hAutoTheme1 = useSelector((state) => state.app.hAutoTheme1);
+    const hArtistTheme = useSelector((state) => state.app.hArtistTheme);
+
     return (
         <div>
-            <Slider banner={banner} />
-            <NewMusic newMusics={newMusic} />
+            <Slider />
+            <NewMusic />
             <Playlist playlist={hAutoTheme1} />
-            <Playlist isArtirt playlist={hArtistTheme} />
+            <Playlist playlist={hArtistTheme} />
         </div>
     );
 }

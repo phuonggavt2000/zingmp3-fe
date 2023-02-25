@@ -10,6 +10,8 @@ const path = {
     TOP: "top-100",
     MV: "mv",
     ALBUM: "album/*",
+    ARTIST: "/:artistname",
+    ARTIST_PLUS: "/nghe-si/:artistname",
 };
 
 export default path;

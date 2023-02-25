@@ -1,15 +1,23 @@
 import icons from "../../ultis/icons";
 import Tippy from "@tippyjs/react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getPlaylist } from "../../store/actions";
+import { memo } from "react";
 
 function Playlist({ isArtirt = false, playlist }) {
     const { title = "", items = [] } = playlist;
+    console.log("items:", items);
     const { AiOutlineHeart, BsPlayCircle, CgMoreAlt } = icons;
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
-    const handleNavigate = (path) => {
+    const handleNavigate = (path, encodeId, type) => {
         navigate(path);
+        if (type === "playlist") {
+            dispatch(getPlaylist(encodeId));
+        }
     };
 
     return (
@@ -20,32 +28,38 @@ function Playlist({ isArtirt = false, playlist }) {
                     <div key={index} className="flex flex-col gap-y-1">
                         <div
                             onClick={() => {
-                                handleNavigate(item.link);
+                                handleNavigate(
+                                    item.link,
+                                    item.encodeId,
+                                    "playlist"
+                                );
                             }}
-                            className="relative cursor-pointer group overflow-hidden rounded-md"
                         >
-                            <img
-                                alt=""
-                                className=" group-hover:scale-110 transition-all"
-                                src={item.thumbnailM}
-                            />
-                            <div className=" inset-0 transition-all bg-dark-alpha-50 justify-center items-center flex gap-x-5 text-3xl opacity-0 group-hover:opacity-100 absolute">
-                                <button className="p-1 rounded-full hover:bg-alpha">
-                                    <AiOutlineHeart />
-                                </button>
-                                <button className="text-5xl">
-                                    <BsPlayCircle />
-                                </button>
-                                <Tippy content="Xem thêm">
+                            <div className="relative cursor-pointer group overflow-hidden rounded-md text-white">
+                                <img
+                                    alt=""
+                                    className=" group-hover:scale-110 transition-all"
+                                    src={item.thumbnailM}
+                                />
+                                <div className=" inset-0 transition-all bg-dark-alpha-50 justify-center items-center flex gap-x-5 text-3xl opacity-0 group-hover:opacity-100 absolute">
                                     <button className="p-1 rounded-full hover:bg-alpha">
-                                        <CgMoreAlt />
+                                        <AiOutlineHeart />
                                     </button>
-                                </Tippy>
+                                    <button className="text-5xl">
+                                        <BsPlayCircle />
+                                    </button>
+                                    <Tippy content="Xem thêm">
+                                        <button className="p-1 rounded-full hover:bg-alpha">
+                                            <CgMoreAlt />
+                                        </button>
+                                    </Tippy>
+                                </div>
                             </div>
+                            <span className="text-sm mt-1 line-clamp-2 hover:text-primary cursor-pointer">
+                                {item.title}
+                            </span>
                         </div>
-                        <span className="text-base mt-1 line-clamp-2">
-                            {item.title}
-                        </span>
+
                         <div className=" text-sm font-medium line-clamp-2 text-secondary">
                             {isArtirt ? (
                                 item.artists?.map((artist, index) => (
@@ -67,4 +81,4 @@ function Playlist({ isArtirt = false, playlist }) {
     );
 }
 
-export default Playlist;
+export default memo(Playlist);

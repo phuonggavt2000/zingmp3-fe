@@ -6,13 +6,16 @@ import { getArrSlider } from "../../ultis/fn";
 import Button from "./Button";
 import icons from "../../ultis/icons";
 import { useCallback } from "react";
+import { useSelector } from "react-redux";
 const { MdArrowBackIosNew, MdArrowForwardIos } = icons;
 var intervalId;
 
-function Slider({ banner }) {
+function Slider() {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(2);
     const [isAuto, setIsAuto] = useState(true);
+
+    const banner = useSelector((state) => state.app.banner);
 
     // animation for banner
     useEffect(() => {

@@ -117,6 +117,30 @@ module.exports = {
                     transform: "scale(1);",
                 },
             },
+            "pre-loader": {
+                "0%": {
+                    left: "-20%",
+                },
+                "100%": {
+                    left: "140%",
+                },
+            },
+            "display-toast": {
+                "0%": {
+                    transform: "translateX(100%)",
+                },
+                "100%": {
+                    transform: "translateX(0p)",
+                },
+            },
+            spin: {
+                "0%": {
+                    transform: "rotate(0deg)",
+                },
+                "100%": {
+                    transform: "rotate(360deg)",
+                },
+            },
         },
         animation: {
             "slide-right":
@@ -133,6 +157,9 @@ module.exports = {
                 "scale-up-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
             "scale-down-image":
                 "scale-down-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
+            "pre-loader": "pre-loader linear 2s infinite",
+            "display-toast": "display-toast linear 1s ",
+            spin: " spin 4s linear infinite",
         },
         flex: {
             4: "4 4 0%",

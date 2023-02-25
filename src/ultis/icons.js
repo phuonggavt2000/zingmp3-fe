@@ -4,11 +4,12 @@ import {
     MdOndemandVideo,
 } from "react-icons/md";
 import { GiChart } from "react-icons/gi";
-import { BiNews, BiCategoryAlt, BiTransfer } from "react-icons/bi";
+import { BiNews, BiCategoryAlt, BiTransfer, BiLoader } from "react-icons/bi";
 import {
     BsMusicNoteBeamed,
     BsPlayCircle,
     BsFillPlayFill,
+    BsPauseCircle,
 } from "react-icons/bs";
 import {
     AiOutlineStar,
@@ -26,7 +27,7 @@ import {
     MdArrowBackIosNew,
     MdOutlineRepeat,
 } from "react-icons/md";
-import { FaPlay } from "react-icons/fa";
+import { FaPlay, FaExclamation, FaPause } from "react-icons/fa";
 import { CgMoreAlt } from "react-icons/cg";
 const icons = {
     MdMusicVideo,
@@ -54,5 +55,9 @@ const icons = {
     MdOutlineRepeat,
     AiOutlineHeart,
     BsFillPlayFill,
+    BsPauseCircle,
+    FaPause,
+    FaExclamation,
+    BiLoader,
 };
 export default icons;
