@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useCallback } from "react";
 import icons from "../../ultis/icons";
 
 function Toast({ listToast, setListToast }) {

@@ -17,7 +17,7 @@ function Header({ scrollTop }) {
 
     return (
         <div
-            className={`fixed transition-all  top-0 right-0 w-[calc(100vw-240px)] h-[70px] z-[99999] ${
+            className={`fixed transition-all  top-0 right-0 w-[calc(100vw-240px)] h-[70px] z-30 ${
                 scrollTop > 60 ? "bg-header shadow-lg" : "bg-transparent "
             }`}
         >

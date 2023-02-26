@@ -10,6 +10,7 @@ function Music({ title, img, artists, releaseDate, idSong }) {
     const dispatch = useDispatch();
     const id = useSelector((state) => state.app.infoSong.id);
     const isPlay = useSelector((state) => state.app.isPlay);
+    const isLoadingMusic = useSelector((state) => state.app.isLoadingMusic);
     const isPlaying = id === idSong && isPlay;
 
     const handleMusic = () => {
@@ -29,7 +30,9 @@ function Music({ title, img, artists, releaseDate, idSong }) {
             }`}
         >
             <div
-                className="rounded-md overflow-hidden relative flex h-[60px] w-[60px] flex-shrink-0"
+                className={`rounded-md overflow-hidden relative flex h-[60px] w-[60px]  flex-shrink-0 ${
+                    isLoadingMusic ? "pointer-events-none" : ""
+                }`}
                 onClick={handleMusic}
             >
                 <img alt="" src={img} className=" " />

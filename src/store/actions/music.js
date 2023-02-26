@@ -28,15 +28,34 @@ export const getInfoSong = (id) => async (dispatch) => {
     }
 };
 
-export const playMusic = () => (dispatch) => {
+export const listMusic = (listMusic) => (dispatch) => {
     dispatch({
-        type: actionTypes.PLAY_MUSIC,
-        flag: true,
+        type: actionTypes.LIST_MUSIC,
+        listMusic,
     });
 };
 
 export const toggleMusic = () => (dispatch) => {
     dispatch({
         type: actionTypes.TOGGLE_MUSIC,
+    });
+};
+
+export const updateSong = (index) => (dispatch) => {
+    dispatch({
+        type: actionTypes.UPDATE_SONG,
+        currentSong: index,
+    });
+};
+
+export const nextSong = () => (dispatch) => {
+    dispatch({
+        type: actionTypes.NEXT_SONG,
+    });
+};
+
+export const prevSong = () => (dispatch) => {
+    dispatch({
+        type: actionTypes.PREV_SONG,
     });
 };

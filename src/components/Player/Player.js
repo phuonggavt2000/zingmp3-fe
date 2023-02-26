@@ -1,23 +1,39 @@
 import icons from "../../ultis/icons";
 import Tippy from "@tippyjs/react";
 import CenterPlayer from "./CenterPlayer";
-import { memo } from "react";
+import { memo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Artist from "../Shared/Artist";
+import { toggleRightSidebar } from "../../store/actions";
 
 function Player() {
-    const { CgMoreAlt } = icons;
+    const { CgMoreAlt, BsVolumeUp, BsMusicNoteList } = icons;
+    const infoSong = useSelector((state) => state.app.infoSong);
+    const dispatch = useDispatch();
+
+    const [volumeValue, setVolumeValue] = useState(40);
+    const currentVolume = (1 / 100) * volumeValue;
     return (
-        <div className=" h-full flex px-4 ">
-            <div className="flex items-center h-full gap-x-3 basis-[30%]">
+        <div className=" h-full flex px-4 z-50">
+            <div className="flex items-center h-full gap-x-3 basis-[30%] overflow-hidden">
                 <img
                     alt=""
                     className="h-[64px] w-[64px] rounded-lg"
-                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/8/3/b/e/83be1f0505b66642b1156de92867467d.jpg"
+                    src={infoSong.img}
                 />
                 <div className="flex flex-col font-semibold">
-                    <span className="text-sm">Form The Street</span>
-                    <span className="text-xs text-secondary link-artist">
-                        Dế choắt
+                    <span className="text-sm whitespace-nowrap">
+                        {infoSong.name}
                     </span>
+                    <div>
+                        {infoSong.artists?.map((artist, index) => (
+                            <Artist
+                                name={artist.name}
+                                link={artist.link}
+                                key={index}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <Tippy content="Xem thêm">
                     <button className="btn-primary">
@@ -26,9 +42,33 @@ function Player() {
                 </Tippy>
             </div>
             <div className="basis-[40%] flex">
-                <CenterPlayer />
+                <CenterPlayer currentVolume={currentVolume} />
             </div>
-            <div className="basis-[30%]"></div>
+            <div className="basis-[30%] flex justify-center items-center text-lg">
+                <button className="flex items-center">
+                    <BsVolumeUp />
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={volumeValue}
+                        onChange={(e) => {
+                            setVolumeValue(e.target.value);
+                        }}
+                        className=" overflow-hidden mx-4 appearance-none rounded-full h-1 hover:h-2 bg-alpha range cursor-pointer"
+                    />
+                </button>
+                <div className="pl-4 border-l-2 border-alpha">
+                    <button
+                        className="p-2  bg-alpha rounded-md hover:opacity-80"
+                        onClick={() => {
+                            dispatch(toggleRightSidebar());
+                        }}
+                    >
+                        <BsMusicNoteList />
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

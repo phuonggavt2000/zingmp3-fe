@@ -10,6 +10,8 @@ import {
     BsPlayCircle,
     BsFillPlayFill,
     BsPauseCircle,
+    BsVolumeUp,
+    BsMusicNoteList,
 } from "react-icons/bs";
 import {
     AiOutlineStar,
@@ -29,6 +31,7 @@ import {
 } from "react-icons/md";
 import { FaPlay, FaExclamation, FaPause } from "react-icons/fa";
 import { CgMoreAlt } from "react-icons/cg";
+import { TfiAlarmClock } from "react-icons/tfi";
 const icons = {
     MdMusicVideo,
     MdOutlineTravelExplore,
@@ -59,5 +62,8 @@ const icons = {
     FaPause,
     FaExclamation,
     BiLoader,
+    BsVolumeUp,
+    BsMusicNoteList,
+    TfiAlarmClock,
 };
 export default icons;

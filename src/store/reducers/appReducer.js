@@ -2,9 +2,11 @@ import actionTypes from "../actions/actionTypes";
 
 const initState = {
     idToast: 0,
+    currentSong: 0,
 
-    banner: [],
     theme: "theme-purple",
+    banner: [],
+    listMusic: [],
     newMusic: {},
     hAutoTheme1: {},
     hArtistTheme: {},
@@ -14,6 +16,7 @@ const initState = {
     isLoadingPage: false,
     isPlay: false,
     isLoadingMusic: false,
+    isRightSidebar: false,
 };
 
 const appReducer = (state = initState, action) => {
@@ -52,6 +55,11 @@ const appReducer = (state = initState, action) => {
                 ...state,
                 isLoadingPage: action.flag,
             };
+        case actionTypes.PLAY_MUSIC:
+            return {
+                ...state,
+                isPlay: action.flag,
+            };
         case actionTypes.GET_INFO_SONG:
             return {
                 ...state,
@@ -65,15 +73,14 @@ const appReducer = (state = initState, action) => {
                 },
             };
         case actionTypes.TOGGLE_MUSIC:
-            console.log("toggle", state.isPlay);
             return {
                 ...state,
                 isPlay: !state.isPlay,
             };
-        case actionTypes.PLAY_MUSIC:
+        case actionTypes.LIST_MUSIC:
             return {
                 ...state,
-                isPlay: action.flag,
+                listMusic: action.listMusic,
             };
         case actionTypes.LOADING_MUSIC:
             return {
@@ -84,6 +91,38 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 idToast: ++state.idToast,
+            };
+        case actionTypes.TOGGLE_SIDEBAR:
+            return {
+                ...state,
+                isRightSidebar: !state.isRightSidebar,
+            };
+        case actionTypes.UPDATE_SONG:
+            return {
+                ...state,
+                currentSong: action.currentSong,
+            };
+        case actionTypes.NEXT_SONG:
+            let currentSong = state.currentSong + 1;
+            if (state.listMusic.length <= state.currentSong + 1) {
+                currentSong = 0;
+            }
+            return {
+                ...state,
+                currentSong: currentSong,
+            };
+
+        case actionTypes.PREV_SONG:
+            let currentPrevSong = state.currentSong - 1;
+            console.log("state.currentSong:", state.currentSong);
+            console.log("state.listMusic.length:", state.listMusic.length);
+
+            if (currentPrevSong < 0) {
+                currentPrevSong = state.listMusic.length - 1;
+            }
+            return {
+                ...state,
+                currentSong: currentPrevSong,
             };
         default:
             return state;

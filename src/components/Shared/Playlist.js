@@ -7,7 +7,6 @@ import { memo } from "react";
 
 function Playlist({ isArtirt = false, playlist }) {
     const { title = "", items = [] } = playlist;
-    console.log("items:", items);
     const { AiOutlineHeart, BsPlayCircle, CgMoreAlt } = icons;
     const dispatch = useDispatch();
 

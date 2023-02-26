@@ -5,7 +5,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { memo } from "react";
 
 function LeftSidebar() {
-    console.log("left");
     return (
         <div
             className=" flex-auto w-full flex flex-col pointer-events-auto text-[14px] font-bold h-[calc(100vh-90px)]"

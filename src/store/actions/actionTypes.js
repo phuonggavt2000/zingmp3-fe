@@ -7,10 +7,15 @@ const actionTypes = {
 
     // get music
     GET_INFO_SONG: "GET_INFO_SONG",
+    LIST_MUSIC: "LIST_MUSIC",
     PLAY_MUSIC: "PLAY_MUSIC",
     TOGGLE_MUSIC: "TOGGLE_MUSIC",
     LOADING_MUSIC: "LOADING_MUSIC",
     WARNING_MUSIC: "WARNING_MUSIC",
+    UPDATE_SONG: "UPDATE_SONG",
+    NEXT_SONG: "NEXT_SONG",
+    PREV_SONG: "PREV_SONG",
+    TOGGLE_SIDEBAR: "TOGGLE_SIDEBAR",
 };
 
 export default actionTypes;

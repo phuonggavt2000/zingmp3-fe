@@ -33,6 +33,12 @@ export const updateHeader = (value) => (dispatch) => {
     });
 };
 
+export const toggleRightSidebar = () => (dispatch) => {
+    dispatch({
+        type: actionTypes.TOGGLE_SIDEBAR,
+    });
+};
+
 export const getPlaylist = (id) => async (dispatch) => {
     try {
         dispatch({ type: actionTypes.LOADING_PAGE, flag: true });

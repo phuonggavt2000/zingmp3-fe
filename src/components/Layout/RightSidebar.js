@@ -1,5 +1,53 @@
+import { useSelector } from "react-redux";
+import icons from "../../ultis/icons";
+import SongAlbum from "../Album/SongAlbum";
+
 function RightSidebar() {
-    return <div>RightSidebar</div>;
+    const { TfiAlarmClock, CgMoreAlt } = icons;
+    const isRightSidebar = useSelector((state) => state.app.isRightSidebar);
+    const listMusic = useSelector((state) => state.app.listMusic);
+    console.log("listMusic:", listMusic);
+    return (
+        <div
+            className={`fixed right-0 h-screen w-[330px] bg-screen transition-all duration-1000  z-40 flex flex-col ${
+                isRightSidebar ? "translate-x-[100%]" : "translate-x-[0]"
+            }`}
+        >
+            <div className="flex h-[70px] items-center py-5 gap-x-2 px-2">
+                <div className="w-full h-full flex items-center justify-center bg-alpha rounded-full text-xs font-medium">
+                    <button className="h-full w-full bg-alpha rounded-full">
+                        Danh sách phát
+                    </button>
+                    <button className="h-full w-full bg-alpha rounded-full">
+                        Nghe gần đây
+                    </button>
+                </div>
+                <button className="btn-primary">
+                    <TfiAlarmClock />
+                </button>
+                <button className="btn-primary">
+                    <CgMoreAlt />
+                </button>
+            </div>
+            <div className="h-full overflow-hidden hover:overlay pl-2 text-sm font-medium">
+                <div>
+                    {listMusic?.map((music, index) => (
+                        <SongAlbum
+                            key={index}
+                            title={music.name}
+                            duration={music.duration}
+                            album={music.album}
+                            artists={music.artists}
+                            img={music.img}
+                            idSong={music.id}
+                            index={index}
+                            rightSideBar
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default RightSidebar;

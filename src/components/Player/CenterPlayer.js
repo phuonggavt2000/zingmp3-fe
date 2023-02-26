@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { memo, useEffect, useState } from "react";
 import audioSitinh from "../../asset/audio/sitinh.mp3";
 import ControlCenterPlayer from "./ControlCenterPlayer";
 import DisplayCenterPlayer from "./DisplayCenterPlayer";
 
-function CenterPlayer() {
+function CenterPlayer({ currentVolume }) {
     const [audio] = useState(new Audio(audioSitinh));
+    useEffect(() => {
+        audio.volume = currentVolume;
+    }, [currentVolume, audio]);
 
     return (
         <div className="flex justify-center items-center flex-grow flex-col">
@@ -14,4 +17,4 @@ function CenterPlayer() {
     );
 }
 
-export default CenterPlayer;
+export default memo(CenterPlayer);

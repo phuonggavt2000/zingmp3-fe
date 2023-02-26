@@ -109,12 +109,12 @@ function Slider() {
         <div className="w-full  pt-6 relative">
             <Button
                 text={<MdArrowBackIosNew size={30} />}
-                style="absolute top-1/2 left-[70px] bg-[rgba(255,255,255,0.3)] z-50 text-white p-2 rounded-full"
+                style="absolute top-1/2 left-[70px] bg-[rgba(255,255,255,0.3)] z-40 text-white p-2 rounded-full"
                 handleOnClick={() => handleBack(1)}
             />
             <Button
                 text={<MdArrowForwardIos size={30} />}
-                style="absolute top-1/2 right-[70px] bg-[rgba(255,255,255,0.3)] z-50 text-white p-2 rounded-full"
+                style="absolute top-1/2 right-[70px] bg-[rgba(255,255,255,0.3)] z-40 text-white p-2 rounded-full"
                 handleOnClick={() => handleBack(-1)}
             />
             <div className="flex justify-center gap-x-14 w-full pt-8">

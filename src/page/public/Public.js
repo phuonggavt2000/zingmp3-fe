@@ -6,6 +6,7 @@ import LeftSidebar from "../../components/Layout/LeftSidebar";
 import Player from "../../components/Player/Player";
 import PreLoader from "../../components/Shared/PreLoader";
 import Toast from "../../components/Shared/Toast";
+import RightSidebar from "../../components/Layout/RightSidebar";
 
 function Public() {
     const theme = useSelector((state) => state.app.theme);
@@ -44,11 +45,9 @@ function Public() {
                         />
                     </div>
                 </div>
-                {/* <div className="flex-none w-rightSidebar border-gray-400 border-l">
-                    <RightSidebar />
-                </div> */}
+                <RightSidebar />
             </div>
-            <div className="w-full h-[90px] bg-player">
+            <div className="w-full h-[90px] bg-player z-50">
                 <Player />
             </div>
         </div>
