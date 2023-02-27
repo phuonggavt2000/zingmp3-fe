@@ -17,11 +17,13 @@ const initState = {
     isPlay: false,
     isLoadingMusic: false,
     isRightSidebar: false,
+    isAlbum: false,
 };
 
 const appReducer = (state = initState, action) => {
     switch (action.type) {
         case actionTypes.GET_HOME:
+            console.log(action.homeData.items);
             return {
                 ...state,
                 banner:
@@ -48,6 +50,7 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 dataPlaylist: action.dataPlaylist,
+                isAlbum: true,
             };
 
         case actionTypes.LOADING_PAGE:
@@ -102,6 +105,11 @@ const appReducer = (state = initState, action) => {
                 ...state,
                 currentSong: action.currentSong,
             };
+        case actionTypes.STATUS_ALBUM:
+            return {
+                ...state,
+                isAlbum: action.flag,
+            };
         case actionTypes.NEXT_SONG:
             let currentSong = state.currentSong + 1;
             if (state.listMusic.length <= state.currentSong + 1) {
@@ -114,8 +122,6 @@ const appReducer = (state = initState, action) => {
 
         case actionTypes.PREV_SONG:
             let currentPrevSong = state.currentSong - 1;
-            console.log("state.currentSong:", state.currentSong);
-            console.log("state.listMusic.length:", state.listMusic.length);
 
             if (currentPrevSong < 0) {
                 currentPrevSong = state.listMusic.length - 1;

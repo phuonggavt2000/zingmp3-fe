@@ -5,7 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getInfoSong, toggleMusic } from "../../store/actions";
 import { memo } from "react";
 
-function Music({ title, img, artists, releaseDate, idSong }) {
+function Music({
+    title,
+    img,
+    artists,
+    releaseDate,
+    idSong,
+    handleChangeMusic,
+    index,
+}) {
     const { FaPlay, FaPause } = icons;
     const dispatch = useDispatch();
     const id = useSelector((state) => state.app.infoSong.id);
@@ -19,7 +27,7 @@ function Music({ title, img, artists, releaseDate, idSong }) {
         } else if (id === idSong) {
             dispatch(toggleMusic());
         } else {
-            dispatch(getInfoSong(idSong));
+            handleChangeMusic(index);
         }
     };
 

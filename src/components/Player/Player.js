@@ -9,6 +9,7 @@ import { toggleRightSidebar } from "../../store/actions";
 function Player() {
     const { CgMoreAlt, BsVolumeUp, BsMusicNoteList } = icons;
     const infoSong = useSelector((state) => state.app.infoSong);
+    const isRightSidebar = useSelector((state) => state.app.isRightSidebar);
     const dispatch = useDispatch();
 
     const [volumeValue, setVolumeValue] = useState(40);
@@ -60,7 +61,9 @@ function Player() {
                 </button>
                 <div className="pl-4 border-l-2 border-alpha">
                     <button
-                        className="p-2  bg-alpha rounded-md hover:opacity-80"
+                        className={`p-2   rounded-md hover:opacity-80 ${
+                            !isRightSidebar ? "bg-primary" : "bg-alpha"
+                        }`}
                         onClick={() => {
                             dispatch(toggleRightSidebar());
                         }}

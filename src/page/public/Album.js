@@ -2,7 +2,12 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LeftAlbum from "../../components/Album/LeftAlbum";
 import RightAlbum from "../../components/Album/RightAlbum";
-import { listMusic, getInfoSong, updateSong } from "../../store/actions";
+import {
+    listMusic,
+    getInfoSong,
+    updateSong,
+    statusAlbum,
+} from "../../store/actions";
 
 function Album() {
     const dispatch = useDispatch();
@@ -22,7 +27,6 @@ function Album() {
                 album: item.album,
             };
         });
-        console.log("convertPlaylist:", convertPlaylist);
 
         dispatch(listMusic(convertPlaylist));
 
@@ -33,13 +37,12 @@ function Album() {
                 block: "start",
             });
         }
-
-        console.log("eleSong.current:", eleSong.current);
     }, [dataPlaylist, dispatch, currentSong]);
 
     useEffect(() => {
+        dispatch(updateSong(0));
         return () => {
-            dispatch(updateSong(0));
+            dispatch(statusAlbum());
         };
     }, [dispatch]);
 

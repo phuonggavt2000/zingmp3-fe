@@ -40,17 +40,19 @@ function SongAlbum({
 
     return (
         <div
-            className={`song-album grid grid-cols-6 px-6 group relative py-2 ${
-                rightSideBar ? "border-none" : "border-b"
-            } border-alpha hover:bg-alpha  hover:rounded-md ${
-                id === idSong ? "bg-alpha rounded-md" : ""
+            className={`song-album w-full  px-6 grouprelative py-2 ${
+                rightSideBar ? "border-none" : "border-b grid-cols-6 grid"
+            } border-alpha   ${
+                id === idSong
+                    ? `${rightSideBar ? "bg-primary" : "bg-alpha"} rounded-md`
+                    : " hover:bg-alpha hover:rounded-md "
             } `}
         >
             {!rightSideBar && (
                 <BsMusicNoteBeamed className="absolute left-0 bottom-1/2 translate-y-1/2" />
             )}
-            <div className="grid col-span-3">
-                <div className="flex items-center gap-x-2 group ">
+            <div className={` ${rightSideBar ? "w-full " : "grid col-span-3"}`}>
+                <div className="flex items-center gap-x-2 group w-full">
                     <Img
                         handleGetSong={handleGetSong}
                         img={img}
@@ -60,8 +62,8 @@ function SongAlbum({
                         id={id}
                         idSong={idSong}
                     />
-                    <div className="capitalize">
-                        <span className="text-main whitespace-nowrap">
+                    <div className="capitalize w-4/5 truncate">
+                        <span className="text-main whitespace-nowrap  truncate overflow-hidden">
                             {title}
                         </span>
                         <div className="whitespace-nowrap flex">

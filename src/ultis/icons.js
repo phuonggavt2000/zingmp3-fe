@@ -12,6 +12,7 @@ import {
     BsPauseCircle,
     BsVolumeUp,
     BsMusicNoteList,
+    BsPauseFill,
 } from "react-icons/bs";
 import {
     AiOutlineStar,
@@ -65,5 +66,6 @@ const icons = {
     BsVolumeUp,
     BsMusicNoteList,
     TfiAlarmClock,
+    BsPauseFill,
 };
 export default icons;

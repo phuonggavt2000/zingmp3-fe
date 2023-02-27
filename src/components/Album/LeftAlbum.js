@@ -3,9 +3,20 @@ import Tippy from "@tippyjs/react";
 import moment from "moment";
 import numFormat from "../../ultis/numFormat";
 import Artist from "../Shared/Artist";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMusic } from "../../store/actions";
 
 function LeftAlbum({ img, title, like, dateUpdatem, artists }) {
-    const { BsPlayCircle, AiOutlineHeart, CgMoreAlt, BsFillPlayFill } = icons;
+    const {
+        BsPlayCircle,
+        AiOutlineHeart,
+        CgMoreAlt,
+        BsFillPlayFill,
+        BsPauseFill,
+        BsPauseCircle,
+    } = icons;
+    const dispatch = useDispatch();
+    const isPlay = useSelector((state) => state.app.isPlay);
 
     const dateString = moment(dateUpdatem).format("DD/MM/YYYY");
 
@@ -17,9 +28,14 @@ function LeftAlbum({ img, title, like, dateUpdatem, artists }) {
                     className="transition-all ease-linear duration-300  group-hover:scale-110"
                     src={img}
                 />
-                <div className=" inset-0 transition-all bg-dark-alpha-50 justify-center items-center flex gap-x-5 text-3xl opacity-0 group-hover:opacity-100 absolute">
+                <div
+                    onClick={() => {
+                        dispatch(toggleMusic());
+                    }}
+                    className=" inset-0 transition-all bg-dark-alpha-50 justify-center items-center flex gap-x-5 text-3xl opacity-0 group-hover:opacity-100 absolute"
+                >
                     <button className="text-5xl text-white">
-                        <BsPlayCircle />
+                        {isPlay ? <BsPauseCircle /> : <BsPlayCircle />}
                     </button>
                 </div>
             </div>
@@ -38,9 +54,21 @@ function LeftAlbum({ img, title, like, dateUpdatem, artists }) {
                 ))}
             </div>
             <span>{numFormat(like)} người yêu thích</span>
-            <button className=" flex items-center bg-primary text-white px-6 py-2 rounded-full text-sm font-normal uppercase hover:brightness-90">
-                <BsFillPlayFill className="text-2xl" /> Phát ngẫu nhiên
-            </button>
+            <div
+                onClick={() => {
+                    dispatch(toggleMusic());
+                }}
+            >
+                {!isPlay ? (
+                    <button className=" flex items-center bg-primary text-white px-6 py-2 rounded-full text-sm font-normal uppercase hover:brightness-90">
+                        <BsFillPlayFill className="text-2xl" /> Tiếp tục phát
+                    </button>
+                ) : (
+                    <button className=" flex items-center bg-primary text-white px-6 py-2 rounded-full text-sm font-normal uppercase hover:brightness-90">
+                        <BsPauseFill className="text-2xl" /> Tạm dừng
+                    </button>
+                )}
+            </div>
             <div>
                 <Tippy content="Thêm vào thư viện">
                     <button className="btn-primary p-3 text-base text-main">

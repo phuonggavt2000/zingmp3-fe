@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import icons from "../../ultis/icons";
 import Music from "./Music";
+import { listMusic, updateSong } from "../../store/actions";
 
 function NewMusic() {
     const newMusics = useSelector((state) => state.app.newMusic);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { AiOutlineRight } = icons;
 
@@ -26,8 +28,24 @@ function NewMusic() {
     useEffect(() => {
         let dataMusics = newMusics[typeMusic] || [];
         const limitedMusics = dataMusics.filter((music, index) => 12 > index);
+        console.log("limitedMusics:", limitedMusics);
         setLimitedMusic(limitedMusics);
     }, [typeMusic, newMusics]);
+
+    const handleChangeMusic = (index) => {
+        const convertSong = limitedMusics.map((music) => {
+            return {
+                id: music.encodeId,
+                name: music.title,
+                img: music.thumbnail,
+                duration: music.duration,
+                artists: music.artists,
+            };
+        });
+        dispatch(updateSong(index));
+
+        dispatch(listMusic(convertSong));
+    };
 
     const selectStatus = [
         {
@@ -81,6 +99,8 @@ function NewMusic() {
                         releaseDate={newMusic.releaseDate}
                         key={index}
                         idSong={newMusic.encodeId}
+                        handleChangeMusic={handleChangeMusic}
+                        index={index}
                     />
                 ))}
             </div>

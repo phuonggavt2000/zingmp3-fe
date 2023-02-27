@@ -19,7 +19,7 @@ function ModalTheme({ ismodal, closemodal }) {
             }}
             className="bg-alpha fixed inset-0 flex justify-center items-center"
         >
-            <div className="h-[90vh] w-[60vw]  font-bold bg-screen rounded-xl overflow-hidden px-7 py-6 shadow-2xl">
+            <div className="h-[90vh] w-[60vw]  font-bold bg-screen rounded-xl overflow-hidden px-7 py-6 shadow-2xl  z-50">
                 <div className="flex items-center text-2xl capitalize relative">
                     <span>Giao diện </span>
                     <Tippy content="Đóng" placement="top">

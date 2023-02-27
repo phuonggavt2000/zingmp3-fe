@@ -39,6 +39,13 @@ export const toggleRightSidebar = () => (dispatch) => {
     });
 };
 
+export const statusAlbum = () => (dispatch) => {
+    dispatch({
+        type: actionTypes.STATUS_ALBUM,
+        flag: false,
+    });
+};
+
 export const getPlaylist = (id) => async (dispatch) => {
     try {
         dispatch({ type: actionTypes.LOADING_PAGE, flag: true });

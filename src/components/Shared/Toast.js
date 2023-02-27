@@ -24,7 +24,7 @@ function Toast({ listToast, setListToast }) {
     }, [listToast, deleteListToast]);
 
     return (
-        <div className="fixed right-0 top-[70px] z-30 flex flex-col gap-y-5">
+        <div className="fixed right-0 top-[70px] z-30 flex flex-col gap-y-5 z-50">
             {listToast.map((value, index) => (
                 <div
                     key={index}
