@@ -39,10 +39,11 @@ export const toggleRightSidebar = () => (dispatch) => {
     });
 };
 
-export const statusAlbum = () => (dispatch) => {
+export const statusAlbum = (flag) => (dispatch) => {
+    console.log("flag:", flag);
     dispatch({
         type: actionTypes.STATUS_ALBUM,
-        flag: false,
+        flag,
     });
 };
 
@@ -66,4 +67,19 @@ export const getPlaylist = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const getDetailArtist = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: actionTypes.LOADING_PAGE, flag: true });
+        const res = await apis.getDetailArtist(id);
+        console.log("res:", res);
+        dispatch({ type: actionTypes.LOADING_PAGE, flag: false });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const loadPage = (flag) => (dispatch) => {
+    dispatch({ type: actionTypes.LOADING_PAGE, flag });
 };

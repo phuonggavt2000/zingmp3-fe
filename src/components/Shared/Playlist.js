@@ -1,30 +1,28 @@
 import icons from "../../ultis/icons";
 import Tippy from "@tippyjs/react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getPlaylist } from "../../store/actions";
 import { memo } from "react";
+import Artist from "./Artist";
 
 function Playlist({ isArtirt = false, playlist }) {
-    const { title = "", items = [] } = playlist;
     const { AiOutlineHeart, BsPlayCircle, CgMoreAlt } = icons;
-    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
     const handleNavigate = (path, encodeId, type) => {
-        navigate(path);
-        if (type === "playlist") {
-            dispatch(getPlaylist(encodeId));
-        }
+        const albumPath = path.split(".")[0];
+        navigate(albumPath);
     };
 
     return (
-        <div className="font-bold capitalize mt-16 flex flex-col gap-y-4">
-            <span className=" text-xl ">{title}</span>
-            <div className="grid grid-cols-5 gap-x-6">
-                {items?.map((item, index) => (
-                    <div key={index} className="flex flex-col gap-y-1">
+        <div className="font-bold capitalize mt-12 flex flex-col gap-y-4">
+            <span className=" text-xl ">{playlist?.title}</span>
+            <div className="grid grid-cols-5 gap-x-6 grid-rows-1 overflow-hidden">
+                {playlist?.items?.map((item, index) => (
+                    <div
+                        key={index}
+                        className="flex flex-col gap-y-1 col-span-1"
+                    >
                         <div
                             onClick={() => {
                                 handleNavigate(
@@ -62,12 +60,12 @@ function Playlist({ isArtirt = false, playlist }) {
                         <div className=" text-sm font-medium line-clamp-2 text-secondary">
                             {isArtirt ? (
                                 item.artists?.map((artist, index) => (
-                                    <span
+                                    <Artist
                                         key={index}
-                                        className="link-artist mr-1"
-                                    >
-                                        {artist.name}
-                                    </span>
+                                        name={artist.name}
+                                        link={artist.link}
+                                        playlist
+                                    />
                                 ))
                             ) : (
                                 <span className="">{item.sortDescription}</span>

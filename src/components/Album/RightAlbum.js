@@ -9,7 +9,7 @@ function RightAlbum({ titleRight }, ref) {
     const listMusic = useSelector((state) => state.app.listMusic);
 
     return (
-        <div className="col-span-3 text-secondary text-sm font-medium h-full overflow-hidden hover:overlay">
+        <div className="col-span-4 text-secondary text-sm font-medium h-full overflow-hidden hover:overlay">
             <div className="flex items-center">
                 <span className="whitespace-nowrap mr-1">Lời tựa:</span>
                 <span className="ml-1 text-main">{titleRight}</span>

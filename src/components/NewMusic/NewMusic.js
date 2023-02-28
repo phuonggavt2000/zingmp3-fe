@@ -15,6 +15,7 @@ function NewMusic() {
     const [activeStatus, setActiveStatus] = useState(0);
     const [typeMusic, setTypeMusic] = useState("all");
     const [limitedMusics, setLimitedMusic] = useState([]);
+    console.log("limitedMusics:", limitedMusics);
 
     const handleNavigate = (path = "/newMusic") => {
         navigate(path);
@@ -101,6 +102,7 @@ function NewMusic() {
                         idSong={newMusic.encodeId}
                         handleChangeMusic={handleChangeMusic}
                         index={index}
+                        duration={newMusic.duration}
                     />
                 ))}
             </div>

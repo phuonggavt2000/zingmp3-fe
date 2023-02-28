@@ -12,8 +12,8 @@ function ModalTheme({ ismodal, closemodal }) {
     };
     return (
         <div
-            onClick={(event) => {
-                if (event.target === event.currentTarget) {
+            onClick={(e) => {
+                if (e.target === e.currentTarget) {
                     closemodal(true);
                 }
             }}

@@ -35,10 +35,11 @@ function Public() {
                 <div className="flex-auto w-[calc(100vw-240px)] flex flex-col h-full">
                     <Header scrollTop={scrollTop} />
                     <div
-                        className=" flex-auto  h-full overflow-hidden hover:overlay px-16 pt-14"
+                        className=" flex-auto  h-full overflow-hidden hover:overlay relative"
                         onScroll={handleScroll}
                     >
-                        {loading ? <PreLoader /> : <Outlet />}
+                        <Outlet />
+                        {loading && <PreLoader />}
                         <Toast
                             listToast={listToast}
                             setListToast={setListToast}

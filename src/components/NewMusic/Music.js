@@ -2,7 +2,7 @@ import Artist from "../Shared/Artist";
 import moment from "moment/moment";
 import icons from "../../ultis/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getInfoSong, toggleMusic } from "../../store/actions";
+import { toggleMusic } from "../../store/actions";
 import { memo } from "react";
 
 function Music({
@@ -13,8 +13,10 @@ function Music({
     idSong,
     handleChangeMusic,
     index,
+    album = {},
+    duration,
 }) {
-    const { FaPlay, FaPause } = icons;
+    const { FaPlay, FaPause, AiOutlineHeart } = icons;
     const dispatch = useDispatch();
     const id = useSelector((state) => state.app.infoSong.id);
     const isPlay = useSelector((state) => state.app.isPlay);
@@ -31,9 +33,21 @@ function Music({
         }
     };
 
+    const handleGetMySong = () => {
+        const detailMusic = {
+            album,
+            artists,
+            duration,
+            id: idSong,
+            img,
+            name: title,
+        };
+        console.log("detailMusic:", detailMusic);
+    };
+
     return (
         <div
-            className={`flex items-center gap-x-2 p-3 group hover:bg-alpha rounded-md text-white overflow-hidden ${
+            className={`flex relative items-center gap-x-2 p-3 group hover:bg-alpha rounded-md text-white overflow-hidden ${
                 id === idSong ? "bg-alpha" : ""
             }`}
         >
@@ -53,15 +67,15 @@ function Music({
                 </div>
             </div>
 
-            <div className="flex flex-col gap-y-1">
+            <div className="flex flex-col gap-y-1 relative">
                 <span className="text-sm capitalize whitespace-nowrap font-semibold">
                     {title}
                 </span>
-                <div className="text-xs capitalize flex gap-x-1 text-secondary whitespace-nowrap font-semibold">
+                <div className="text-xs capitalize flex text-secondary whitespace-nowrap font-semibold">
                     {artists?.map((artist, index) => (
                         <Artist
                             name={artist.name}
-                            id={artist.id}
+                            alias={artist.alias}
                             link={artist.link}
                             key={index}
                         />
@@ -70,6 +84,11 @@ function Music({
                 <span className="text-xs capitalize text-secondary  font-semibold">
                     {moment.unix(releaseDate).fromNow()}
                 </span>
+            </div>
+            <div className="absolute right-5 opacity-0 group-hover:opacity-100">
+                <button onClick={handleGetMySong} className="btn-primary">
+                    <AiOutlineHeart />
+                </button>
             </div>
         </div>
     );

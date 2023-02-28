@@ -13,23 +13,28 @@ function RightSidebar() {
     const listMusic = useSelector((state) => state.app.listMusic);
     const currentSong = useSelector((state) => state.app.currentSong);
     const isAlbum = useSelector((state) => state.app.isAlbum);
+    const idSongPlayer = useSelector((state) => state.app.infoSong.id);
 
     useEffect(() => {
         const handleRightSidebar = () => {
-            console.log("!isAlbum:", !isAlbum);
+            const idSongSidebar = listMusic[currentSong].id;
+            const isSong = idSongSidebar === idSongPlayer;
+            const isGetSong = !isSong && !isAlbum;
 
-            if (!isAlbum) {
+            if (isGetSong) {
+                dispatch(getInfoSong(idSongSidebar));
+
                 const eleSongs =
                     wrapSong.current.querySelectorAll(".song-album");
                 eleSongs[currentSong].scrollIntoView({
                     behavior: "smooth",
                     block: "start",
                 });
-                dispatch(getInfoSong(listMusic[currentSong].id));
             }
         };
+
         if (listMusic[0]) handleRightSidebar();
-    }, [currentSong, listMusic, isAlbum, dispatch]);
+    }, [currentSong, listMusic, isAlbum, idSongPlayer, dispatch]);
 
     return (
         <div

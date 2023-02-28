@@ -31,3 +31,19 @@ export const getInfosong = (id) =>
             reject(error);
         }
     });
+
+export const getDetailArtist = (name) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios({
+                url: "/artist",
+                method: "get",
+                params: {
+                    name,
+                },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });

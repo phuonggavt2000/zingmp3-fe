@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-function Artist({ name, id, link }) {
+function Artist({ name, link, playlist }) {
     const navigate = useNavigate();
     return (
         <div
-            className="link-artist mr-[1px] text-xs inline whitespace-nowrap"
+            className={`link-artist mr-1 ${
+                playlist ? "" : "text-xs whitespace-nowrap"
+            }  inline `}
             onClick={() => {
                 navigate(link);
             }}

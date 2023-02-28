@@ -5,7 +5,6 @@ import Artist from "../Shared/Artist";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMusic, updateSong } from "../../store/actions";
-import { getPlaylist } from "../../store/actions";
 
 function SongAlbum({
     idSong,
@@ -40,7 +39,7 @@ function SongAlbum({
 
     return (
         <div
-            className={`song-album w-full  px-6 grouprelative py-2 ${
+            className={`song-album w-full  px-6 group relative py-2 ${
                 rightSideBar ? "border-none" : "border-b grid-cols-6 grid"
             } border-alpha   ${
                 id === idSong
@@ -85,8 +84,8 @@ function SongAlbum({
                         <span
                             className="link-artist"
                             onClick={() => {
-                                navigate(album?.link);
-                                dispatch(getPlaylist(album?.encodeId));
+                                const albumPath = album?.link?.split(".")[0];
+                                navigate(albumPath);
                             }}
                         >
                             {album?.title}{" "}

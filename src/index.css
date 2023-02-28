@@ -139,3 +139,22 @@
     }
 }
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
+
+.slick-slider {
+    margin: 0 -9px !important;
+}
+
+.slick-next {
+    right: 26px;
+    transform: translateY(-36px);
+}
+.slick-prev {
+    transform: translateY(-36px);
+    left: 5px;
+    z-index: 10;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 45px;
+}

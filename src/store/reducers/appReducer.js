@@ -7,8 +7,10 @@ const initState = {
     theme: "theme-purple",
     banner: [],
     listMusic: [],
+    artistSpotlight: [],
     newMusic: {},
     hAutoTheme1: {},
+    hArtistTheme2: {},
     hArtistTheme: {},
     dataPlaylist: {},
     infoSong: {},
@@ -16,7 +18,7 @@ const initState = {
     isLoadingPage: false,
     isPlay: false,
     isLoadingMusic: false,
-    isRightSidebar: false,
+    isRightSidebar: true,
     isAlbum: false,
 };
 
@@ -39,6 +41,12 @@ const appReducer = (state = initState, action) => {
                 hArtistTheme: action.homeData.items.find(
                     (item) => item.sectionId === "hArtistTheme"
                 ),
+                hArtistTheme2: action.homeData.items.find(
+                    (item) => item.sectionId === "hAutoTheme2"
+                ),
+                artistSpotlight: action.homeData.items.find(
+                    (item) => item.sectionType === "artistSpotlight"
+                ).items,
             };
         case actionTypes.CHANGE_THEME:
             return {
@@ -50,14 +58,8 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 dataPlaylist: action.dataPlaylist,
-                isAlbum: true,
             };
 
-        case actionTypes.LOADING_PAGE:
-            return {
-                ...state,
-                isLoadingPage: action.flag,
-            };
         case actionTypes.PLAY_MUSIC:
             return {
                 ...state,
@@ -106,9 +108,17 @@ const appReducer = (state = initState, action) => {
                 currentSong: action.currentSong,
             };
         case actionTypes.STATUS_ALBUM:
+            console.log("action.flag:", action.flag);
+
             return {
                 ...state,
                 isAlbum: action.flag,
+            };
+        case actionTypes.LOADING_PAGE:
+            console.log("loading page");
+            return {
+                ...state,
+                isLoadingPage: action.flag,
             };
         case actionTypes.NEXT_SONG:
             let currentSong = state.currentSong + 1;
