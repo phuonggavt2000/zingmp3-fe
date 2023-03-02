@@ -14,6 +14,8 @@ module.exports = {
                 header: "rgba(var(--bg-screen) / 0.9)",
                 secondary: "rgb(var(--secondary) / 0.6)",
                 "dark-alpha-50": "rgba(var(--dark-alpha-50)/ 0.5)",
+                screen: "rgb(var(--bg-screen))",
+
                 // ...
             },
             width: {
@@ -25,12 +27,13 @@ module.exports = {
                 header: "70px",
             },
             backgroundColor: {
-                screen: "rgb(var(--bg-screen))",
+                newRelease: "rgb(var(--bg-screen) / 0.8)",
                 player: "rgb(var(--bg-player))",
                 hoverIcon: "rgb(var(--bg-hover-icon))", // icon
             },
-            backgroundImage: {},
-            borderColor: {},
+            boxShadow: {
+                newRelease: "0 -20px 22px rgb(var(--bg-screen))",
+            },
         },
         fontFamily: {
             inter: ["Inter", "sans-serif"],

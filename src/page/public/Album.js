@@ -22,6 +22,8 @@ function Album() {
     const [idMusic, setIdMusic] = useState(null);
 
     const currentSong = useSelector((state) => state.app.currentSong);
+    const myPlaylists = useSelector((state) => state.app.myPlaylists);
+    console.log("myPlaylists:", myPlaylists);
 
     useEffect(() => {
         dispatch(statusAlbum(true));
@@ -75,7 +77,7 @@ function Album() {
                 like: resDatas?.like,
                 contentLastUpdate: resDatas?.contentLastUpdate,
                 artists: resDatas?.artists,
-                desc: resDatas?.description,
+                decs: resDatas?.description,
                 convertSongs,
             };
 

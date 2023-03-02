@@ -21,6 +21,7 @@ import {
     AiOutlineClose,
     AiOutlineRight,
     AiOutlineHeart,
+    AiFillHeart,
 } from "react-icons/ai";
 import { ImPrevious2, ImNext2 } from "react-icons/im";
 import { BsSearch } from "react-icons/bs";
@@ -29,8 +30,9 @@ import {
     MdArrowForwardIos,
     MdArrowBackIosNew,
     MdOutlineRepeat,
+    MdClose,
 } from "react-icons/md";
-import { FaPlay, FaExclamation, FaPause } from "react-icons/fa";
+import { FaPlay, FaExclamation, FaPause, FaCheck } from "react-icons/fa";
 import { CgMoreAlt } from "react-icons/cg";
 import { TfiAlarmClock } from "react-icons/tfi";
 const icons = {
@@ -67,5 +69,8 @@ const icons = {
     BsMusicNoteList,
     TfiAlarmClock,
     BsPauseFill,
+    AiFillHeart,
+    FaCheck,
+    MdClose,
 };
 export default icons;

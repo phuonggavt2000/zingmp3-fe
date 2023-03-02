@@ -9,6 +9,7 @@ function Home() {
     const hAutoTheme1 = useSelector((state) => state.app.hAutoTheme1);
     const hArtistTheme = useSelector((state) => state.app.hArtistTheme);
     const hArtistTheme2 = useSelector((state) => state.app.hArtistTheme2);
+    console.log("hArtistTheme2:", hArtistTheme2);
     const artistSpotlight = useSelector((state) => state.app.artistSpotlight);
 
     return (

@@ -5,7 +5,7 @@ function Artist({ name, link, playlist }) {
     return (
         <div
             className={`link-artist mr-1 ${
-                playlist ? "" : "text-xs whitespace-nowrap"
+                playlist ? "" : " whitespace-nowrap"
             }  inline `}
             onClick={() => {
                 navigate(link);

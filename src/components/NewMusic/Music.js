@@ -2,8 +2,8 @@ import Artist from "../Shared/Artist";
 import moment from "moment/moment";
 import icons from "../../ultis/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMusic } from "../../store/actions";
-import { memo } from "react";
+import { addMySong, removeMySong, toggleMusic } from "../../store/actions";
+import { memo, useEffect, useState } from "react";
 
 function Music({
     title,
@@ -16,11 +16,16 @@ function Music({
     album = {},
     duration,
 }) {
-    const { FaPlay, FaPause, AiOutlineHeart } = icons;
+    const { FaPlay, FaPause, AiOutlineHeart, AiFillHeart } = icons;
     const dispatch = useDispatch();
+
+    const [isLike, setIsLike] = useState(false);
+
     const id = useSelector((state) => state.app.infoSong.id);
     const isPlay = useSelector((state) => state.app.isPlay);
     const isLoadingMusic = useSelector((state) => state.app.isLoadingMusic);
+    const mySongs = useSelector((state) => state.app.mySongs);
+
     const isPlaying = id === idSong && isPlay;
 
     const handleMusic = () => {
@@ -42,9 +47,18 @@ function Music({
             img,
             name: title,
         };
-        console.log("detailMusic:", detailMusic);
+        dispatch(addMySong(detailMusic));
     };
 
+    const handleRemoveMySong = () => {
+        dispatch(removeMySong(idSong));
+    };
+
+    useEffect(() => {
+        const convertIdSongs = mySongs.map((song) => song.id);
+        const isLikes = convertIdSongs?.includes(idSong);
+        setIsLike(isLikes);
+    }, [mySongs, idSong]);
     return (
         <div
             className={`flex relative items-center gap-x-2 p-3 group hover:bg-alpha rounded-md text-white overflow-hidden ${
@@ -86,9 +100,21 @@ function Music({
                 </span>
             </div>
             <div className="absolute right-5 opacity-0 group-hover:opacity-100">
-                <button onClick={handleGetMySong} className="btn-primary">
-                    <AiOutlineHeart />
-                </button>
+                {isLike ? (
+                    <button
+                        onClick={handleRemoveMySong}
+                        className="btn-primary text-primary opacity-0 group-hover:opacity-100"
+                    >
+                        <AiFillHeart />
+                    </button>
+                ) : (
+                    <button
+                        onClick={handleGetMySong}
+                        className=" btn-primary opacity-0 group-hover:opacity-100"
+                    >
+                        <AiOutlineHeart />
+                    </button>
+                )}
             </div>
         </div>
     );

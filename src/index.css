@@ -49,6 +49,20 @@
         outline: none;
     }
 
+    .text-rank {
+        color: transparent;
+        -webkit-text-stroke: 0.1vw white;
+    }
+    .text-rank-1 {
+        -webkit-text-stroke: 0.1vw blue;
+    }
+    .text-rank-2 {
+        -webkit-text-stroke: 0.1vw greenyellow;
+    }
+    .text-rank-3 {
+        -webkit-text-stroke: 0.1vw red;
+    }
+
     .comma:not(:last-child):after {
         content: ",";
     }

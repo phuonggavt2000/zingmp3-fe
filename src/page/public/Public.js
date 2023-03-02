@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Header from "../../components/Layout/Header";
@@ -12,18 +12,11 @@ function Public() {
     const theme = useSelector((state) => state.app.theme);
     const [scrollTop, setScrollTop] = useState(0);
     const loading = useSelector((state) => state.app.isLoadingPage);
-    const idToast = useSelector((state) => state.app.idToast);
-    const [listToast, setListToast] = useState([]);
 
     const handleScroll = (e) => {
         setScrollTop(e.target.scrollTop);
     };
 
-    useEffect(() => {
-        if (idToast) {
-            setListToast((prev) => [...prev, { id: idToast }]);
-        }
-    }, [idToast]);
     return (
         <div
             className={`w-screen h-screen flex flex-col bg-screen text-main ${theme}`}
@@ -35,15 +28,12 @@ function Public() {
                 <div className="flex-auto w-[calc(100vw-240px)] flex flex-col h-full">
                     <Header scrollTop={scrollTop} />
                     <div
-                        className=" flex-auto  h-full overflow-hidden hover:overlay relative"
+                        className=" flex-auto  h-full overflow-hidden hover:overlay relative z-20"
                         onScroll={handleScroll}
                     >
                         <Outlet />
                         {loading && <PreLoader />}
-                        <Toast
-                            listToast={listToast}
-                            setListToast={setListToast}
-                        />
+                        <Toast />
                     </div>
                 </div>
                 <RightSidebar />

@@ -4,7 +4,13 @@ import moment from "moment";
 import Artist from "../Shared/Artist";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMusic, updateSong } from "../../store/actions";
+import {
+    addMySong,
+    removeMySong,
+    toggleMusic,
+    updateSong,
+} from "../../store/actions";
+import { useState, useEffect } from "react";
 
 function SongAlbum({
     idSong,
@@ -15,16 +21,23 @@ function SongAlbum({
     img,
     index,
     rightSideBar,
+    handleChangeSong,
+    newSong,
 }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { BsMusicNoteBeamed } = icons;
+    const [isLike, setIsLike] = useState(false);
+
+    const { BsMusicNoteBeamed, AiFillHeart, AiOutlineHeart } = icons;
     const durationFormat = moment
         .utc(moment.duration(duration, "seconds").asMilliseconds())
         .format("mm:ss");
+
     const isPlay = useSelector((state) => state.app.isPlay);
     const id = useSelector((state) => state.app.infoSong.id);
+    const mySongs = useSelector((state) => state.app.mySongs);
+
     const isPlaying = id === idSong && isPlay;
 
     const handleGetSong = () => {
@@ -33,13 +46,38 @@ function SongAlbum({
         } else if (id === idSong) {
             dispatch(toggleMusic());
         } else {
-            dispatch(updateSong(index));
+            if (rightSideBar) {
+                dispatch(updateSong(index));
+            } else {
+                handleChangeSong(index);
+            }
         }
     };
+    const handleAddMySong = () => {
+        const detailMusic = {
+            album,
+            artists,
+            duration,
+            id: idSong,
+            img,
+            name: title,
+        };
+        dispatch(addMySong(detailMusic));
+    };
+
+    const handleRemoveMySong = () => {
+        dispatch(removeMySong(idSong));
+    };
+
+    useEffect(() => {
+        const convertIdSongs = mySongs.map((song) => song.id);
+        const isLikes = convertIdSongs?.includes(idSong);
+        setIsLike(isLikes);
+    }, [mySongs, idSong]);
 
     return (
         <div
-            className={`song-album w-full  px-6 group relative py-2 ${
+            className={`song-album w-full font-medium px-6 group relative py-2 ${
                 rightSideBar ? "border-none" : "border-b grid-cols-6 grid"
             } border-alpha   ${
                 id === idSong
@@ -47,11 +85,30 @@ function SongAlbum({
                     : " hover:bg-alpha hover:rounded-md "
             } `}
         >
-            {!rightSideBar && (
-                <BsMusicNoteBeamed className="absolute left-0 bottom-1/2 translate-y-1/2" />
+            {!rightSideBar && !newSong && (
+                <BsMusicNoteBeamed className="absolute left-2 bottom-1/2 translate-y-1/2 " />
             )}
-            <div className={` ${rightSideBar ? "w-full " : "grid col-span-3"}`}>
-                <div className="flex items-center gap-x-2 group w-full">
+            {newSong && (
+                <span
+                    className={`${
+                        index === 0
+                            ? "text-rank-1"
+                            : index === 1
+                            ? "text-rank-2"
+                            : index === 2
+                            ? "text-rank-3"
+                            : "text-rank"
+                    } absolute left-6 bottom-1/2 translate-y-1/2  font-black text-2xl text-transparent`}
+                >
+                    {index + 1}
+                </span>
+            )}
+            <div
+                className={`overflow-hidden mr-5 line-clamp-1 ${
+                    rightSideBar ? "w-full " : "grid col-span-3 ml-2"
+                } ${newSong ? "ml-12" : ""}`}
+            >
+                <div className="flex items-center gap-x-2 group w-full ">
                     <Img
                         handleGetSong={handleGetSong}
                         img={img}
@@ -62,10 +119,10 @@ function SongAlbum({
                         idSong={idSong}
                     />
                     <div className="capitalize w-4/5 truncate">
-                        <span className="text-main whitespace-nowrap  truncate overflow-hidden">
+                        <span className="text-main whitespace-nowrap text-sm  truncate overflow-hidden">
                             {title}
                         </span>
-                        <div className="whitespace-nowrap flex">
+                        <div className="whitespace-nowrap text-xs flex">
                             {artists?.map((artist, index) => (
                                 <Artist
                                     name={artist.name}
@@ -95,13 +152,41 @@ function SongAlbum({
             )}
             {!rightSideBar && (
                 <div className="grid col-span-1 text-right">
-                    <div className="flex items-center">
-                        <span className="ml-auto text-xs">
-                            {durationFormat}
-                        </span>
+                    <div className="flex items-center justify-center text-secondary">
+                        {!(id === idSong) && (
+                            <span className="ml-auto text-xs group-hover:hidden">
+                                {durationFormat}
+                            </span>
+                        )}
                     </div>
                 </div>
             )}
+
+            <div
+                className={` group-hover:flex absolute right-8 bottom-2/4 translate-y-1/2 ${
+                    id === idSong ? "flex" : "hidden"
+                }`}
+            >
+                {isLike ? (
+                    <button
+                        className={`btn-primary ml-auto  ${
+                            rightSideBar && id === idSong
+                                ? "text-secondary"
+                                : "text-primary"
+                        }`}
+                        onClick={handleRemoveMySong}
+                    >
+                        <AiFillHeart />
+                    </button>
+                ) : (
+                    <button
+                        className="btn-primary ml-auto"
+                        onClick={handleAddMySong}
+                    >
+                        <AiOutlineHeart />
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

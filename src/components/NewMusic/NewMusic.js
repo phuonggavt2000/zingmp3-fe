@@ -8,6 +8,7 @@ import { listMusic, updateSong } from "../../store/actions";
 
 function NewMusic() {
     const newMusics = useSelector((state) => state.app.newMusic);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { AiOutlineRight } = icons;
@@ -92,19 +93,21 @@ function NewMusic() {
                 </button>
             </div>
             <div className="grid grid-cols-3 gap-x-6">
-                {limitedMusics.map((newMusic, index) => (
-                    <Music
-                        title={newMusic.title}
-                        img={newMusic.thumbnail}
-                        artists={newMusic.artists}
-                        releaseDate={newMusic.releaseDate}
-                        key={index}
-                        idSong={newMusic.encodeId}
-                        handleChangeMusic={handleChangeMusic}
-                        index={index}
-                        duration={newMusic.duration}
-                    />
-                ))}
+                {limitedMusics.map((newMusic, index) => {
+                    return (
+                        <Music
+                            title={newMusic.title}
+                            img={newMusic.thumbnail}
+                            artists={newMusic.artists}
+                            releaseDate={newMusic.releaseDate}
+                            key={index}
+                            idSong={newMusic.encodeId}
+                            handleChangeMusic={handleChangeMusic}
+                            index={index}
+                            duration={newMusic.duration}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

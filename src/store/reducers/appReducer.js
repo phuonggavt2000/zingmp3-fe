@@ -1,13 +1,17 @@
 import actionTypes from "../actions/actionTypes";
 
 const initState = {
-    idToast: 0,
     currentSong: 0,
 
     theme: "theme-purple",
     banner: [],
     listMusic: [],
     artistSpotlight: [],
+    toast: {
+        id: 0,
+    },
+    mySongs: [],
+    myPlaylists: [],
     newMusic: {},
     hAutoTheme1: {},
     hArtistTheme2: {},
@@ -95,7 +99,10 @@ const appReducer = (state = initState, action) => {
         case actionTypes.WARNING_MUSIC:
             return {
                 ...state,
-                idToast: ++state.idToast,
+                toast: {
+                    id: ++state.toast.id,
+                    ...action.status,
+                },
             };
         case actionTypes.TOGGLE_SIDEBAR:
             return {
@@ -108,18 +115,59 @@ const appReducer = (state = initState, action) => {
                 currentSong: action.currentSong,
             };
         case actionTypes.STATUS_ALBUM:
-            console.log("action.flag:", action.flag);
-
             return {
                 ...state,
                 isAlbum: action.flag,
             };
         case actionTypes.LOADING_PAGE:
-            console.log("loading page");
             return {
                 ...state,
                 isLoadingPage: action.flag,
             };
+        case actionTypes.ADD_MY_SONG:
+            let detailMusics = state.mySongs;
+
+            const chechMySong = state.mySongs.some(
+                (song) => song.id === action.detailMusic.id
+            );
+            if (!chechMySong) {
+                detailMusics = [...state.mySongs, action.detailMusic];
+            }
+            return {
+                ...state,
+                mySongs: detailMusics,
+            };
+        case actionTypes.ADD_MY_PLAYLIST:
+            let detailPlaylist = state.myPlaylists;
+
+            const checkMyPlaylist = state.myPlaylists.some(
+                (playlist) =>
+                    playlist.encodeId === action.detailPlaylist.encodeId
+            );
+            if (!checkMyPlaylist) {
+                detailPlaylist = [...state.myPlaylists, action.detailPlaylist];
+            }
+            return {
+                ...state,
+                myPlaylists: detailPlaylist,
+            };
+        case actionTypes.REMOVE_MY_SONG:
+            const currentSongs = state.mySongs.filter(
+                (song) => song.id !== action.idSong
+            );
+            return {
+                ...state,
+                mySongs: currentSongs,
+            };
+        case actionTypes.REMOVE_MY_PLAYLIST:
+            const currentPlaylist = state.myPlaylists.filter(
+                (playlist) => playlist.encodeId !== action.idPlaylist
+            );
+            return {
+                ...state,
+                myPlaylists: currentPlaylist,
+            };
+
         case actionTypes.NEXT_SONG:
             let currentSong = state.currentSong + 1;
             if (state.listMusic.length <= state.currentSong + 1) {
