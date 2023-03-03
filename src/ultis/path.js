@@ -4,7 +4,7 @@ const path = {
     LOGIN: "login",
     MYMUSIC: "mymusic",
     ZINGCHART: "zing-chart",
-    FOLLOW: "follow",
+    TOPWEEK: "topweek",
     NEWMUSIC: "newmusic",
     HUB: "hub",
     TOP: "top-100",

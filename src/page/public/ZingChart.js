@@ -1,34 +1,100 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { getChartHome } from "../../apis";
 import images from "../../asset/images";
 import SongAlbum from "../../components/Album/SongAlbum";
+import { listMusic, loadPage, updateSong } from "../../store/actions";
 import icons from "../../ultis/icons";
 
 function ZingChart() {
     const { BsFillPlayFill } = icons;
-    const handleChangeSong = () => {};
+    const dispatch = useDispatch();
     const [dataZingChart, setDataZingChart] = useState({});
     const [renderPromotes, setRenderPromotes] = useState([]);
-    console.log("renderPromotes:", renderPromotes);
 
     const handleRenderTop = () => {
         setRenderPromotes([...dataZingChart.promotes]);
     };
 
+    const handleChangeSong = (index, zingchart, key) => {
+        if (zingchart) {
+            const convertSong = dataZingChart.coverWeekChart[key].items.map(
+                (song) => {
+                    return {
+                        id: song.encodeId,
+                        name: song.title,
+                        img: song.thumbnail,
+                        duration: song.duration,
+                        artists: song.artists,
+                        album: song.album,
+                    };
+                }
+            );
+            dispatch(updateSong(index));
+            dispatch(listMusic(convertSong));
+        } else {
+            const convertSong = renderPromotes.map((song) => {
+                return {
+                    id: song.encodeId,
+                    name: song.title,
+                    img: song.thumbnail,
+                    duration: song.duration,
+                    artists: song.artists,
+                    album: song.album,
+                };
+            });
+            dispatch(updateSong(index));
+            dispatch(listMusic(convertSong));
+        }
+    };
+
     useEffect(() => {
         const getZingChart = async () => {
+            dispatch(loadPage(true));
             const res = await getChartHome();
+            dispatch(loadPage(false));
+
             const promotes = res.data.data.RTChart.items;
             const limitedPromotes = promotes.filter(
                 (item, index) => index < 10
             );
             const weekChart = res.data.data.weekChart;
+            const keyWeekChart = Object.keys(weekChart);
+            const valueWeekChart = Object.values(weekChart);
 
-            setDataZingChart({ promotes, limitedPromotes });
+            const coverWeekChart = keyWeekChart.map((item) => {
+                let result;
+                valueWeekChart.forEach((value) => {
+                    const convertItems = value.items.filter(
+                        (item, index) => index < 5
+                    );
+
+                    if (item === value.country) {
+                        let title = "";
+                        if (item === "vn") {
+                            title = "Việt Nam";
+                        }
+                        if (item === "us") {
+                            title = "US-UK";
+                        }
+                        if (item === "korea") {
+                            title = "K-Pop";
+                        }
+
+                        result = {
+                            title,
+                            items: convertItems,
+                        };
+                    }
+                });
+                return result;
+            });
+
+            setDataZingChart({ promotes, limitedPromotes, coverWeekChart });
             setRenderPromotes([...limitedPromotes]);
         };
         getZingChart();
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="relative">
@@ -66,7 +132,7 @@ function ZingChart() {
                             img={song.thumbnail}
                             idSong={song.encodeId}
                             index={index}
-                            // handleChangeSong={handleChangeSong}
+                            handleChangeSong={handleChangeSong}
                             newSong
                         />
                     ))}
@@ -83,17 +149,47 @@ function ZingChart() {
                 )}
             </div>
             <div className=" w-full mt-8 relative ">
-                <img
-                    src={images.bannerZingChart2}
-                    className=" brightness-50 h-full w-full"
-                    alt=""
-                />
+                <div className="absolute inset-0">
+                    <img
+                        src={images.bannerZingChart2}
+                        className=" brightness-50 h-full w-full"
+                        alt=""
+                    />
+                </div>
 
                 <div className="absolute inset-0 bg-newRelease "></div>
-                <div className="absolute inset-0">
-                    <span>Bảng xếp hạng</span>
-                    <div className="grid grid-cols-3">
-                        <div></div>
+                <div className="relative z-10 px-16 py-16 flex-col flex gap-y-8">
+                    <span className="text-5xl font-bold">Bảng xếp hạng</span>
+                    <div className="grid grid-cols-3 gap-x-6">
+                        {dataZingChart.coverWeekChart?.map((item, key) => (
+                            <div key={key} className="bg-alpha py-3 rounded-md">
+                                <div className="flex items-center py-2 pl-6 gap-x-2">
+                                    <span className="font-bold text-2xl">
+                                        {item.title}
+                                    </span>
+                                    <button className="p-1 text-lg bg-primary rounded-full">
+                                        <BsFillPlayFill />
+                                    </button>
+                                </div>
+
+                                {item.items?.map((song, index) => (
+                                    <SongAlbum
+                                        key={index}
+                                        title={song.title}
+                                        duration={song.duration}
+                                        album={song.album}
+                                        artists={song.artists}
+                                        img={song.thumbnail}
+                                        idSong={song.encodeId}
+                                        index={index}
+                                        keyZingChart={key}
+                                        handleChangeSong={handleChangeSong}
+                                        newSong
+                                        zingChart
+                                    />
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

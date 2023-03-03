@@ -23,6 +23,8 @@ function SongAlbum({
     rightSideBar,
     handleChangeSong,
     newSong,
+    zingChart,
+    keyZingChart,
 }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -49,7 +51,11 @@ function SongAlbum({
             if (rightSideBar) {
                 dispatch(updateSong(index));
             } else {
-                handleChangeSong(index);
+                if (zingChart) {
+                    handleChangeSong(index, zingChart, keyZingChart);
+                } else {
+                    handleChangeSong(index);
+                }
             }
         }
     };
@@ -105,8 +111,10 @@ function SongAlbum({
             )}
             <div
                 className={`overflow-hidden mr-5 line-clamp-1 ${
-                    rightSideBar ? "w-full " : "grid col-span-3 ml-2"
-                } ${newSong ? "ml-12" : ""}`}
+                    rightSideBar ? "w-full " : "grid  ml-2"
+                } ${newSong ? "ml-12" : ""} ${
+                    zingChart ? "col-span-4" : "col-span-3"
+                }`}
             >
                 <div className="flex items-center gap-x-2 group w-full ">
                     <Img
@@ -135,7 +143,7 @@ function SongAlbum({
                     </div>
                 </div>
             </div>
-            {!rightSideBar && (
+            {!rightSideBar && !zingChart && (
                 <div className="grid col-span-2">
                     <div className="flex items-center text-xs">
                         <span
@@ -151,7 +159,11 @@ function SongAlbum({
                 </div>
             )}
             {!rightSideBar && (
-                <div className="grid col-span-1 text-right">
+                <div
+                    className={`grid  text-right  ${
+                        zingChart ? "col-span-2" : "col-span-1"
+                    }`}
+                >
                     <div className="flex items-center justify-center text-secondary">
                         {!(id === idSong) && (
                             <span className="ml-auto text-xs group-hover:hidden">

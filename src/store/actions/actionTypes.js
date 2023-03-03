@@ -20,6 +20,7 @@ const actionTypes = {
     ADD_MY_PLAYLIST: "ADD_MY_PLAYLIST",
     REMOVE_MY_SONG: "REMOVE_MY_SONG",
     REMOVE_MY_PLAYLIST: "REMOVE_MY_PLAYLIST",
+    REPEAT_MUSIC: "REPEAT_MUSIC",
 };
 
 export default actionTypes;

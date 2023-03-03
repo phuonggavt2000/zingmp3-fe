@@ -22,8 +22,8 @@ const optionBgs = [
         img: images.themeDark,
     },
     {
-        class: "theme-green-light",
-        img: images.themeGreenLight,
+        class: "theme-green",
+        img: images.themeGreen,
     },
 ];
 

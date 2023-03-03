@@ -7,7 +7,6 @@ function ArtistSlider({ items, title }) {
     const navigate = useNavigate();
 
     const settings = {
-        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: items?.length < 6 ? items?.length : 6,

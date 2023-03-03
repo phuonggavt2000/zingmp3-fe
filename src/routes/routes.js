@@ -1,4 +1,11 @@
-import { Follow, Home, Login, MyMusic, ZingChart, Album } from "../page/public";
+import {
+    TopWeek,
+    Home,
+    Login,
+    MyMusic,
+    ZingChart,
+    Album,
+} from "../page/public";
 import Artist from "../page/public/Artist";
 import Hub from "../page/public/Hub";
 import MV from "../page/public/MV";
@@ -16,8 +23,8 @@ const routes = [
         component: Login,
     },
     {
-        path: path.FOLLOW,
-        component: Follow,
+        path: path.TOPWEEK,
+        component: TopWeek,
     },
     {
         path: path.MYMUSIC,

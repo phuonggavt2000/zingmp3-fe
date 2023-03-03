@@ -18,9 +18,9 @@ export const primaryMenu = [
         path: path.ZINGCHART,
     },
     {
-        title: "Theo dõi",
+        title: "Xếp hạng tuần",
         icon: icons.BiNews,
-        path: path.FOLLOW,
+        path: path.TOPWEEK,
     },
 ];
 
@@ -31,18 +31,8 @@ export const subMenu = [
         path: path.NEWMUSIC,
     },
     {
-        title: "Thể loại",
-        icon: icons.BiCategoryAlt,
-        path: path.HUB,
-    },
-    {
         title: "Top 100",
         icon: icons.AiOutlineStar,
         path: path.TOP,
-    },
-    {
-        title: "MV",
-        icon: icons.MdMusicVideo,
-        path: path.MV,
     },
 ];

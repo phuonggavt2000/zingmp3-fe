@@ -134,3 +134,11 @@ export const removeMyPlaylist = (idPlaylist) => (dispatch) => {
         },
     });
 };
+
+export const repeatSong = (type) => (dispatch) => {
+    console.log("type:", type);
+    dispatch({
+        type: actionTypes.REPEAT_MUSIC,
+        flag: type,
+    });
+};

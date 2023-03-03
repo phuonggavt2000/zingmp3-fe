@@ -3,7 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const initState = {
     currentSong: 0,
 
-    theme: "theme-purple",
+    theme: "theme-blue-light",
     banner: [],
     listMusic: [],
     artistSpotlight: [],
@@ -24,6 +24,7 @@ const initState = {
     isLoadingMusic: false,
     isRightSidebar: true,
     isAlbum: false,
+    isRepeat: false,
 };
 
 const appReducer = (state = initState, action) => {
@@ -187,6 +188,12 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 currentSong: currentPrevSong,
+            };
+        case actionTypes.REPEAT_MUSIC:
+            console.log("  action.type:", action.type);
+            return {
+                ...state,
+                isRepeat: action.flag,
             };
         default:
             return state;

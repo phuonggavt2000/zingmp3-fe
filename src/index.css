@@ -67,19 +67,18 @@
         content: ",";
     }
 
-    .theme-green-light {
-        --primary: 15 112 112;
-        --main: 50 50 61;
+    .theme-green {
+        --primary: 19 134 115;
+        --nav-text: 160 160 160;
+        --main: 255 255 255;
         --sub: 255 255 255;
-        --placeholder: 117 117 117;
-        --nav: 15 112 112;
+        --placeholder: 238 238 238;
+        --nav: 255 255 255;
         --alpha: 0 0% 100%;
-        --bg-screen: 206 217 217;
-        --bg-player: 192 216 216;
-        --bg-hover-icon: 204 212 212;
-        --nav-text: 50 50 61;
+        --bg-screen: 20 41 34;
+        --bg-player: 24 24 24;
         --dark-alpha-50: 0 0 0;
-        --secondary: 0 0 0;
+        --secondary: 192 187 187;
     }
 
     .theme-dark {

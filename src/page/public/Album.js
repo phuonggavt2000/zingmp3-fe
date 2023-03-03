@@ -10,6 +10,7 @@ import {
     statusAlbum,
     loadPage,
     getInfoSong,
+    addMyPlaylist,
 } from "../../store/actions";
 
 function Album() {
@@ -18,12 +19,24 @@ function Album() {
     const { idAlbum } = useParams();
 
     const [dataPlaylist, setDataPlaylist] = useState({});
-    console.log("dataPlaylist:", dataPlaylist);
     const [idMusic, setIdMusic] = useState(null);
 
     const currentSong = useSelector((state) => state.app.currentSong);
-    const myPlaylists = useSelector((state) => state.app.myPlaylists);
-    console.log("myPlaylists:", myPlaylists);
+
+    const handleAddPlaylist = () => {
+        const convertPlaylist = {
+            artists: dataPlaylist.artists,
+            artistsNames: dataPlaylist.artistsNames,
+            sortDescription: dataPlaylist.decs,
+            link: dataPlaylist.link,
+            title: dataPlaylist.title,
+            thumbnail: dataPlaylist.img,
+            thumbnailM: dataPlaylist.thumbnailM,
+            encodeId: dataPlaylist.encodeId,
+        };
+
+        dispatch(addMyPlaylist(convertPlaylist));
+    };
 
     useEffect(() => {
         dispatch(statusAlbum(true));
@@ -58,6 +71,7 @@ function Album() {
         const getDataAlbum = async () => {
             dispatch(loadPage(true));
             const resData = await getPlaylist(idAlbum);
+            console.log("resData:", resData);
             dispatch(loadPage(false));
             const resDatas = resData.data.data;
 
@@ -78,6 +92,11 @@ function Album() {
                 contentLastUpdate: resDatas?.contentLastUpdate,
                 artists: resDatas?.artists,
                 decs: resDatas?.description,
+                artistsNames: resDatas?.artistsNames,
+                link: resDatas?.link,
+                encodeId: resDatas?.encodeId,
+                thumbnailM: resDatas?.thumbnailM,
+
                 convertSongs,
             };
 
@@ -97,6 +116,8 @@ function Album() {
                     like={dataPlaylist?.like}
                     dateUpdate={dataPlaylist?.contentLastUpdate}
                     artists={dataPlaylist?.artists}
+                    id={dataPlaylist?.encodeId}
+                    handleAddPlaylist={handleAddPlaylist}
                 />
                 <RightAlbum titleRight={dataPlaylist?.decs} ref={eleSong} />
             </div>

@@ -4,9 +4,18 @@ import moment from "moment";
 import numFormat from "../../ultis/numFormat";
 import Artist from "../Shared/Artist";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMusic } from "../../store/actions";
+import { removeMyPlaylist, toggleMusic } from "../../store/actions";
+import { useEffect, useState } from "react";
 
-function LeftAlbum({ img, title, like, dateUpdatem, artists }) {
+function LeftAlbum({
+    img,
+    title,
+    like,
+    dateUpdatem,
+    artists,
+    handleAddPlaylist,
+    id,
+}) {
     const {
         BsPlayCircle,
         AiOutlineHeart,
@@ -14,11 +23,24 @@ function LeftAlbum({ img, title, like, dateUpdatem, artists }) {
         BsFillPlayFill,
         BsPauseFill,
         BsPauseCircle,
+        AiFillHeart,
     } = icons;
     const dispatch = useDispatch();
     const isPlay = useSelector((state) => state.app.isPlay);
-
+    const myPlaylists = useSelector((state) => state.app.myPlaylists);
     const dateString = moment(dateUpdatem).format("DD/MM/YYYY");
+
+    const [islike, setIsLike] = useState(false);
+    console.log("like:", islike);
+
+    const handleRemovePlaylist = () => {
+        dispatch(removeMyPlaylist(id));
+    };
+
+    useEffect(() => {
+        const checkLike = myPlaylists.map((item) => item.encodeId).includes(id);
+        setIsLike(checkLike);
+    }, [myPlaylists, id]);
 
     return (
         <div className="col-span-2 overflow-hidden">
@@ -73,9 +95,21 @@ function LeftAlbum({ img, title, like, dateUpdatem, artists }) {
                 </div>
                 <div>
                     <Tippy content="Thêm vào thư viện">
-                        <button className="btn-primary p-3 text-base text-main">
-                            <AiOutlineHeart />
-                        </button>
+                        {islike ? (
+                            <button
+                                className="btn-primary p-3 text-base text-primary"
+                                onClick={handleRemovePlaylist}
+                            >
+                                <AiFillHeart />
+                            </button>
+                        ) : (
+                            <button
+                                className="btn-primary p-3 text-base text-main"
+                                onClick={handleAddPlaylist}
+                            >
+                                <AiOutlineHeart />
+                            </button>
+                        )}
                     </Tippy>
                     <Tippy content="Xem thêm">
                         <button className="btn-primary p-3 text-base text-main">

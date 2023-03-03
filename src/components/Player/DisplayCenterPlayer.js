@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { nextSong } from "../../store/actions";
 
 function DisplayCenterPlayer({ audio }) {
+    const dispatch = useDispatch();
     const [valueInput, setValueInput] = useState("0");
     const [isMouse, setIsMouse] = useState(false);
     const [currentTime, setCurrentTime] = useState("00:00");
     const [duration, setDuration] = useState("00:00");
 
     const infoSong = useSelector((state) => state.app.infoSong);
+    const isRepeat = useSelector((state) => state.app.isRepeat);
+
+    console.log("isRepeat:", isRepeat);
 
     useEffect(() => {
         if (infoSong?.song) {
@@ -26,6 +31,10 @@ function DisplayCenterPlayer({ audio }) {
         }
     }, [infoSong, audio]);
 
+    useEffect(() => {
+        audio.loop = isRepeat;
+    }, [isRepeat, audio]);
+
     audio.ontimeupdate = () => {
         const time = moment
             .utc(moment.duration(audio.currentTime, "seconds").asMilliseconds())
@@ -36,6 +45,15 @@ function DisplayCenterPlayer({ audio }) {
 
         if (!isMouse) setValueInput(CurrentPercent);
     };
+
+    audio.onended = () => {
+        if (isRepeat) {
+            audio.load();
+        } else {
+            dispatch(nextSong());
+        }
+    };
+
     return (
         <div className=" w-full flex items-center mb-1 text-xs font-medium text-secondary">
             <span>{currentTime}</span>

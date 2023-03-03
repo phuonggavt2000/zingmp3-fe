@@ -26,7 +26,7 @@ function Player() {
                     <span className="text-sm whitespace-nowrap">
                         {infoSong.name}
                     </span>
-                    <div>
+                    <div className="text-xs">
                         {infoSong.artists?.map((artist, index) => (
                             <Artist
                                 name={artist.name}

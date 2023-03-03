@@ -4,7 +4,7 @@ const images = {
     themeBrown: require("./theme/themeBrown.jpg"),
     themeBlue: require("./theme/themeBlue.jpg"),
     themeBlueLight: require("./theme/themeBlueLight.jpg"),
-    themeGreenLight: require("./theme/themGreenLight.jpg"),
+    themeGreen: require("./theme/themeGreen.jpg"),
     newRelease: require("./img/newRelease.jpg"),
     bannerTop: require("./img/banner-top100.png"),
     logoTop: require("./img/logoTop100.png"),

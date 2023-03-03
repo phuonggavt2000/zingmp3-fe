@@ -47,3 +47,19 @@ export const getDetailArtist = (name) =>
             reject(error);
         }
     });
+
+export const searchSong = (value) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios({
+                url: "/search",
+                method: "get",
+                params: {
+                    keyword: value,
+                },
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });

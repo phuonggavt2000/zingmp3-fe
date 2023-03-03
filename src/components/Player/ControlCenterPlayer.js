@@ -1,6 +1,11 @@
-import { useEffect, memo } from "react";
+import { useEffect, memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMusic, nextSong, prevSong } from "../../store/actions";
+import {
+    toggleMusic,
+    nextSong,
+    prevSong,
+    repeatSong,
+} from "../../store/actions";
 import icons from "../../ultis/icons";
 
 function ControlMusic({ audio }) {
@@ -17,6 +22,18 @@ function ControlMusic({ audio }) {
     const isLoadingMusic = useSelector((state) => state.app.isLoadingMusic);
     const dispatch = useDispatch();
 
+    const [repeatMusic, setRepeatMusic] = useState(false);
+    const [randomMusic, setRandomMusic] = useState(false);
+    console.log("repeatMusic:", repeatMusic);
+
+    const handleRepeatMusic = () => {
+        setRepeatMusic(!repeatMusic);
+    };
+
+    const handleRandomMusic = () => {
+        setRandomMusic(!randomMusic);
+    };
+
     useEffect(() => {
         if (isPLay) {
             audio.play();
@@ -24,9 +41,21 @@ function ControlMusic({ audio }) {
             audio.pause();
         }
     }, [isPLay, audio]);
+
+    useEffect(() => {
+        console.log("repeatMusic:", repeatMusic);
+
+        dispatch(repeatSong(repeatMusic));
+    }, [repeatMusic, dispatch]);
+
     return (
         <div className="h-1/2 text-2xl flex gap-x-7 items-center">
-            <button className="hover:bg-alpha h-[32px] w-[32px] rounded-full flex justify-center items-center">
+            <button
+                onClick={handleRandomMusic}
+                className={`${
+                    randomMusic ? "text-primary" : ""
+                } hover:bg-alpha h-[32px] w-[32px] rounded-full flex justify-center items-center`}
+            >
                 <BiTransfer />
             </button>{" "}
             <button
@@ -49,7 +78,12 @@ function ControlMusic({ audio }) {
             >
                 <ImNext2 />
             </button>{" "}
-            <button className="hover:bg-alpha h-[32px] w-[32px] rounded-full flex justify-center items-center">
+            <button
+                onClick={handleRepeatMusic}
+                className={`${
+                    repeatMusic ? "text-primary" : ""
+                } hover:bg-alpha h-[32px] w-[32px] rounded-full flex justify-center items-center`}
+            >
                 <MdOutlineRepeat />
             </button>
         </div>

@@ -27,6 +27,7 @@ function Playlist({ isArtirt = false, playlist }) {
     };
 
     const handleRemovePlaylist = (id) => {
+        console.log("id:", id);
         dispatch(removeMyPlaylist(id));
     };
 
