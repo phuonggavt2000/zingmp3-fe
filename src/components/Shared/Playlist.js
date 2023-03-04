@@ -27,7 +27,6 @@ function Playlist({ isArtirt = false, playlist }) {
     };
 
     const handleRemovePlaylist = (id) => {
-        console.log("id:", id);
         dispatch(removeMyPlaylist(id));
     };
 
@@ -42,7 +41,6 @@ function Playlist({ isArtirt = false, playlist }) {
             <div className="grid grid-cols-5 gap-x-6 gap-y-10 grid-rows-1 overflow-hidden">
                 {playlist?.items?.map((item, index) => {
                     const isLike = idPlaylist.includes(item.encodeId);
-                    console.log("isLike:", isLike);
                     return (
                         <div
                             key={index}

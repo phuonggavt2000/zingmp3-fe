@@ -15,6 +15,9 @@ function Music({
     index,
     album = {},
     duration,
+    search,
+    searchAll,
+    musicSearch,
 }) {
     const { FaPlay, FaPause, AiOutlineHeart, AiFillHeart } = icons;
     const dispatch = useDispatch();
@@ -34,7 +37,7 @@ function Music({
         } else if (id === idSong) {
             dispatch(toggleMusic());
         } else {
-            handleChangeMusic(index);
+            handleChangeMusic(index, musicSearch);
         }
     };
 
@@ -61,13 +64,19 @@ function Music({
     }, [mySongs, idSong]);
     return (
         <div
-            className={`flex relative items-center gap-x-2 p-3 group hover:bg-alpha rounded-md text-white overflow-hidden ${
+            className={`flex relative items-center gap-x-2  group hover:bg-alpha rounded-md text-white overflow-hidden ${
                 id === idSong ? "bg-alpha" : ""
-            }`}
+            } ${search ? "p-2" : searchAll ? "p-2 bg-alpha" : "p-3"}`}
         >
             <div
-                className={`rounded-md overflow-hidden relative flex h-[60px] w-[60px]  flex-shrink-0 ${
+                className={`rounded-md overflow-hidden relative flex  flex-shrink-0 ${
                     isLoadingMusic ? "pointer-events-none" : ""
+                } ${
+                    search
+                        ? "h-[52px] w-[52px]"
+                        : searchAll
+                        ? "h-[88px] w-[88px] "
+                        : "h-[60px] w-[60px] "
                 }`}
                 onClick={handleMusic}
             >
@@ -95,9 +104,11 @@ function Music({
                         />
                     ))}
                 </div>
-                <span className="text-xs capitalize text-secondary  font-semibold">
-                    {moment.unix(releaseDate).fromNow()}
-                </span>
+                {!search && (
+                    <span className="text-xs capitalize text-secondary  font-semibold">
+                        {moment.unix(releaseDate).fromNow()}
+                    </span>
+                )}
             </div>
             <div className="absolute right-5 opacity-0 group-hover:opacity-100">
                 {isLike ? (

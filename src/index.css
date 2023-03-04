@@ -63,6 +63,11 @@
         -webkit-text-stroke: 0.1vw red;
     }
 
+    .text-new {
+        color: transparent;
+        -webkit-text-stroke: 0.1vw rgb(192, 187, 187);
+    }
+
     .comma:not(:last-child):after {
         content: ",";
     }
@@ -165,6 +170,11 @@
     transform: translateY(-36px);
     left: 5px;
     z-index: 10;
+}
+
+.hidden-slick .slick-prev,
+.hidden-slick .slick-next {
+    display: none !important;
 }
 
 .slick-prev:before,

@@ -71,7 +71,6 @@ function Album() {
         const getDataAlbum = async () => {
             dispatch(loadPage(true));
             const resData = await getPlaylist(idAlbum);
-            console.log("resData:", resData);
             dispatch(loadPage(false));
             const resDatas = resData.data.data;
 

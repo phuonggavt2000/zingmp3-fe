@@ -16,7 +16,6 @@ function NewMusic() {
     const [activeStatus, setActiveStatus] = useState(0);
     const [typeMusic, setTypeMusic] = useState("all");
     const [limitedMusics, setLimitedMusic] = useState([]);
-    console.log("limitedMusics:", limitedMusics);
 
     const handleNavigate = (path = "/newMusic") => {
         navigate(path);
@@ -30,7 +29,6 @@ function NewMusic() {
     useEffect(() => {
         let dataMusics = newMusics[typeMusic] || [];
         const limitedMusics = dataMusics.filter((music, index) => 12 > index);
-        console.log("limitedMusics:", limitedMusics);
         setLimitedMusic(limitedMusics);
     }, [typeMusic, newMusics]);
 

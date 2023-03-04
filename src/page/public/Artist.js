@@ -47,7 +47,6 @@ function Artist() {
             dispatch(loadPage(false));
 
             const itemsSinger = getDataSinger.data.data;
-            console.log("itemsSinger:", itemsSinger);
 
             const songSinger = itemsSinger.sections?.find(
                 (item) => item.sectionType === "song"
@@ -76,7 +75,6 @@ function Artist() {
             );
 
             const idSongs = limitedSong?.map((item) => item.encodeId);
-            console.log("idSongs:", idSongs);
 
             const convertedSinger = {
                 name: itemsSinger?.name,

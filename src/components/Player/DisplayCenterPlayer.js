@@ -13,8 +13,6 @@ function DisplayCenterPlayer({ audio }) {
     const infoSong = useSelector((state) => state.app.infoSong);
     const isRepeat = useSelector((state) => state.app.isRepeat);
 
-    console.log("isRepeat:", isRepeat);
-
     useEffect(() => {
         if (infoSong?.song) {
             const duration = moment

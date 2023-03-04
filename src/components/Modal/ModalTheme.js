@@ -17,7 +17,7 @@ function ModalTheme({ ismodal, closemodal }) {
                     closemodal(true);
                 }
             }}
-            className="bg-alpha fixed inset-0 flex justify-center items-center"
+            className="bg-alpha fixed inset-0 flex justify-center items-center  z-20"
         >
             <div className="h-[90vh] w-[60vw]  font-bold bg-screen rounded-xl overflow-hidden px-7 py-6 shadow-2xl  z-50">
                 <div className="flex items-center text-2xl capitalize relative">

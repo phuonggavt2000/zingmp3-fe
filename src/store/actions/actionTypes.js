@@ -21,6 +21,7 @@ const actionTypes = {
     REMOVE_MY_SONG: "REMOVE_MY_SONG",
     REMOVE_MY_PLAYLIST: "REMOVE_MY_PLAYLIST",
     REPEAT_MUSIC: "REPEAT_MUSIC",
+    SEARCH_DATA: "SEARCH_DATA",
 };
 
 export default actionTypes;

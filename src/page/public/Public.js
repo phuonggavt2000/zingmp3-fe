@@ -22,7 +22,7 @@ function Public() {
             className={`w-screen h-screen flex flex-col bg-screen text-main ${theme}`}
         >
             <div className="flex-auto flex h-[calc(100vh-90px)]">
-                <div className="flex flex-none w-leftSidebar bg-alpha">
+                <div className="flex flex-none xl:w-leftSidebar md:w-[70px]  bg-alpha">
                     <LeftSidebar />
                 </div>
                 <div className="flex-auto w-[calc(100vw-240px)] flex flex-col h-full">

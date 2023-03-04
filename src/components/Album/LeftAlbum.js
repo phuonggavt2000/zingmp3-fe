@@ -31,7 +31,6 @@ function LeftAlbum({
     const dateString = moment(dateUpdatem).format("DD/MM/YYYY");
 
     const [islike, setIsLike] = useState(false);
-    console.log("like:", islike);
 
     const handleRemovePlaylist = () => {
         dispatch(removeMyPlaylist(id));

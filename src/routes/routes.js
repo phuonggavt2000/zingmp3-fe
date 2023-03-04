@@ -7,9 +7,8 @@ import {
     Album,
 } from "../page/public";
 import Artist from "../page/public/Artist";
-import Hub from "../page/public/Hub";
-import MV from "../page/public/MV";
 import NewMusic from "../page/public/NewMusic";
+import SearchAll from "../page/public/SearchAll";
 import Top100 from "../page/public/Top100";
 import path from "../ultis/path";
 
@@ -38,17 +37,10 @@ const routes = [
         path: path.NEWMUSIC,
         component: NewMusic,
     },
-    {
-        path: path.HUB,
-        component: Hub,
-    },
+
     {
         path: path.TOP,
         component: Top100,
-    },
-    {
-        path: path.MV,
-        component: MV,
     },
     {
         path: path.ALBUM,
@@ -61,6 +53,14 @@ const routes = [
     {
         path: path.ARTIST_PLUS,
         component: Artist,
+    },
+    {
+        path: path.SEARCHALL,
+        component: SearchAll,
+    },
+    {
+        path: path.PLAYLIST,
+        component: Album,
     },
 ];
 

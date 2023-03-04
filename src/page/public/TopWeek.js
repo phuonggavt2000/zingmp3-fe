@@ -18,7 +18,6 @@ function TopWeek() {
     const [country, setCountry] = useState("vn");
     const [dataTopWeek, setDataTopWeek] = useState([]);
     const [renderTopWeek, setRenderTopWeek] = useState({});
-    console.log("renderTopWeek:", renderTopWeek);
 
     const changeTypeTopWeek = (type) => {
         setCountry(type);
@@ -57,6 +56,8 @@ function TopWeek() {
         setRenderTopWeek(convertDataTopWeek);
     }, [country, dataTopWeek]);
     return (
+
+        
         <div className="h-full w-full overflow-hidden relative">
             <div className="absolute inset-0">
                 <img

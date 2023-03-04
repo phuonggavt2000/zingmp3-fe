@@ -18,6 +18,9 @@ const initState = {
     hArtistTheme: {},
     dataPlaylist: {},
     infoSong: {},
+    searchData: {},
+    hNewrelease: {},
+    hAlbum: {},
 
     isLoadingPage: false,
     isPlay: false,
@@ -30,7 +33,7 @@ const initState = {
 const appReducer = (state = initState, action) => {
     switch (action.type) {
         case actionTypes.GET_HOME:
-            console.log(action.homeData.items);
+            console.log(action.homeData);
             return {
                 ...state,
                 banner:
@@ -52,6 +55,12 @@ const appReducer = (state = initState, action) => {
                 artistSpotlight: action.homeData.items.find(
                     (item) => item.sectionType === "artistSpotlight"
                 ).items,
+                hNewrelease: action.homeData.items.find(
+                    (item) => item.sectionId === "hNewrelease"
+                ),
+                hAlbum: action.homeData.items.find(
+                    (item) => item.sectionId === "hAlbum"
+                ),
             };
         case actionTypes.CHANGE_THEME:
             return {
@@ -190,10 +199,14 @@ const appReducer = (state = initState, action) => {
                 currentSong: currentPrevSong,
             };
         case actionTypes.REPEAT_MUSIC:
-            console.log("  action.type:", action.type);
             return {
                 ...state,
                 isRepeat: action.flag,
+            };
+        case actionTypes.SEARCH_DATA:
+            return {
+                ...state,
+                searchData: action.data,
             };
         default:
             return state;

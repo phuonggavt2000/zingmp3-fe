@@ -46,6 +46,25 @@ export const listMusic = (listMusic) => (dispatch) => {
     });
 };
 
+export const loadMusic = (flag) => (dispatch) => {
+    dispatch({
+        type: actionTypes.LOADING_MUSIC,
+        flag,
+    });
+};
+
+export const musicVip = () => (dispatch) => {
+    dispatch({
+        type: actionTypes.WARNING_MUSIC,
+        status: {
+            icon: FaExclamation,
+            title: "Dành cho tài khoản vip",
+            decs: "Bạn cần có tài khoản vip để có thể nghe được bài này",
+            type: "warning",
+        },
+    });
+};
+
 export const toggleMusic = () => (dispatch) => {
     dispatch({
         type: actionTypes.TOGGLE_MUSIC,
@@ -136,9 +155,15 @@ export const removeMyPlaylist = (idPlaylist) => (dispatch) => {
 };
 
 export const repeatSong = (type) => (dispatch) => {
-    console.log("type:", type);
     dispatch({
         type: actionTypes.REPEAT_MUSIC,
         flag: type,
+    });
+};
+
+export const searchData = (data) => (dispatch) => {
+    dispatch({
+        type: actionTypes.SEARCH_DATA,
+        data,
     });
 };

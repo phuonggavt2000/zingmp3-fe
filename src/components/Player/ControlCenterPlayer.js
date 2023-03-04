@@ -24,7 +24,6 @@ function ControlMusic({ audio }) {
 
     const [repeatMusic, setRepeatMusic] = useState(false);
     const [randomMusic, setRandomMusic] = useState(false);
-    console.log("repeatMusic:", repeatMusic);
 
     const handleRepeatMusic = () => {
         setRepeatMusic(!repeatMusic);
@@ -43,8 +42,6 @@ function ControlMusic({ audio }) {
     }, [isPLay, audio]);
 
     useEffect(() => {
-        console.log("repeatMusic:", repeatMusic);
-
         dispatch(repeatSong(repeatMusic));
     }, [repeatMusic, dispatch]);
 

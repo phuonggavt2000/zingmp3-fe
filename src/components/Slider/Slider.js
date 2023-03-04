@@ -6,7 +6,15 @@ import { getArrSlider } from "../../ultis/fn";
 import Button from "./Button";
 import icons from "../../ultis/icons";
 import { useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+    getInfoSong,
+    listMusic,
+    loadMusic,
+    updateSong,
+} from "../../store/actions";
+import { getInfosong, getSong } from "../../apis";
 const { MdArrowBackIosNew, MdArrowForwardIos } = icons;
 var intervalId;
 
@@ -14,6 +22,8 @@ function Slider() {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(2);
     const [isAuto, setIsAuto] = useState(true);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const banner = useSelector((state) => state.app.banner);
 
@@ -90,9 +100,27 @@ function Slider() {
     };
     const handleClickBanner = (item) => {
         if (item?.type === 1) {
+            const getMusic = async () => {
+                dispatch(loadMusic(true));
+                const res = await getInfosong(item.encodeId);
+                const resDetailSong = res.data.data;
+                dispatch(loadMusic(false));
+
+                const convertSong = {
+                    id: resDetailSong.encodeId,
+                    name: resDetailSong.title,
+                    img: resDetailSong.thumbnail,
+                    duration: resDetailSong.duration,
+                    artists: resDetailSong.artists,
+                };
+                dispatch(updateSong(0));
+                dispatch(listMusic([convertSong]));
+            };
+            getMusic();
         } else if (item?.type === 4) {
             // eslint-disable-next-line no-unused-vars
             const albumPath = item?.link?.split(".")[0];
+            navigate(albumPath);
         } else {
         }
     };
@@ -123,9 +151,12 @@ function Slider() {
                         alt=""
                         key={item.encodeId}
                         src={item.banner}
-                        className={`slider-item flex-1 object-contain w-[30%] rounded-lg ${
+                        className={`slider-item flex-1 object-contain w-[30%] rounded-lg cursor-pointer ${
                             index <= 2 ? "block" : "hidden"
                         }`}
+                        onClick={() => {
+                            handleClickBanner(item);
+                        }}
                     />
                 ))}
             </div>

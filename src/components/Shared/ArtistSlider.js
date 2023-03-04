@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import numFormat from "../../ultis/numFormat";
 
 function ArtistSlider({ items, title }) {
-    console.log("items:", items);
     const navigate = useNavigate();
 
     const settings = {

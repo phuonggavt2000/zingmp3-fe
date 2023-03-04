@@ -11,10 +11,8 @@ function MyMusic() {
 
     const mySongs = useSelector((state) => state.app.mySongs);
     const myPlaylists = useSelector((state) => state.app.myPlaylists);
-    console.log("myPlaylists:", myPlaylists);
 
     const [playlist, setPlaylist] = useState({ title: "PLAYLIST", items: [] });
-    console.log("playlist:", playlist);
 
     const handleChangeSong = (index) => {
         const convertSong = mySongs.map((song) => {

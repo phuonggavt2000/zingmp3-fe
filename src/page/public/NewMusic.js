@@ -34,7 +34,6 @@ function NewMusic() {
             dispatch(loadPage(false));
 
             setSongs(res.data.data.items);
-            console.log("res:", res);
         };
         getChart();
     }, [dispatch]);
