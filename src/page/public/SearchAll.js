@@ -25,7 +25,7 @@ function SearchAll() {
     };
 
     return (
-        <div className="px-16 py-20 font-medium">
+        <div className="md:px-16 px-6 py-20 font-medium">
             <span className="font-bold text-2xl">Kết quả tìm kiếm</span>
             {searchData?.artists && (
                 <div className="mt-10">

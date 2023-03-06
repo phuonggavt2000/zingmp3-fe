@@ -12,6 +12,7 @@ function DisplayCenterPlayer({ audio }) {
 
     const infoSong = useSelector((state) => state.app.infoSong);
     const isRepeat = useSelector((state) => state.app.isRepeat);
+    const isPLay = useSelector((state) => state.app.isPlay);
 
     useEffect(() => {
         if (infoSong?.song) {
@@ -28,6 +29,14 @@ function DisplayCenterPlayer({ audio }) {
             setDuration(duration);
         }
     }, [infoSong, audio]);
+
+    useEffect(() => {
+        if (isPLay) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }, [isPLay, audio]);
 
     useEffect(() => {
         audio.loop = isRepeat;
@@ -53,7 +62,7 @@ function DisplayCenterPlayer({ audio }) {
     };
 
     return (
-        <div className=" w-full flex items-center mb-1 text-xs font-medium text-secondary">
+        <div className=" w-full md:flex hidden items-center mb-1 text-xs font-medium text-secondary">
             <span>{currentTime}</span>
             <input
                 type="range"

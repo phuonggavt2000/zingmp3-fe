@@ -15,6 +15,8 @@ function Playlist({ isArtirt = false, playlist }) {
     const myPlaylists = useSelector((state) => state.app.myPlaylists);
 
     const [idPlaylist, setIdPlaylist] = useState([]);
+    const [dataPlaylist, setDataPlaylist] = useState([]);
+    const [widthValue, setWidthValue] = useState(window.innerWidth);
 
     const handleNavigate = (path, encodeId, type) => {
         const albumPath = path.split(".")[0];
@@ -35,16 +37,40 @@ function Playlist({ isArtirt = false, playlist }) {
         setIdPlaylist(convertId);
     }, [myPlaylists]);
 
+    useEffect(() => {
+        const detectSize = () => {
+            setWidthValue(window.innerWidth);
+        };
+        window.addEventListener("resize", detectSize);
+        return () => window.addEventListener("resize", detectSize);
+    }, []);
+
+    useEffect(() => {
+        const handleResizePlaylist = () => {
+            let hPlaylist = [];
+            if (window.innerWidth < 1024 && window.innerWidth > 768) {
+                hPlaylist = playlist?.items?.filter((item, index) => index < 4);
+            } else if (window.innerWidth < 768) {
+                hPlaylist = playlist?.items?.filter((item, index) => index < 3);
+            } else {
+                hPlaylist = playlist?.items?.filter((item, index) => index < 5);
+            }
+            setDataPlaylist(hPlaylist);
+        };
+
+        handleResizePlaylist();
+    }, [playlist, widthValue]);
+
     return (
         <div className="font-bold capitalize mt-12 flex flex-col gap-y-4">
             <span className=" text-xl ">{playlist?.title}</span>
-            <div className="grid grid-cols-5 gap-x-6 gap-y-10 grid-rows-1 overflow-hidden">
-                {playlist?.items?.map((item, index) => {
+            <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3  gap-x-6 gap-y-10 grid-rows-1 overflow-hidden">
+                {dataPlaylist?.map((item, index) => {
                     const isLike = idPlaylist.includes(item.encodeId);
                     return (
                         <div
                             key={index}
-                            className="flex flex-col gap-y-1 col-span-1"
+                            className="flex flex-col gap-y-1 col-span-1 "
                         >
                             <div
                                 onClick={() => {

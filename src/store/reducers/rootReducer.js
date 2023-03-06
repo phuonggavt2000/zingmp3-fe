@@ -12,12 +12,20 @@ const commonConfig = {
 
 const authConfig = {
     ...commonConfig,
-    key: "auth-zingmp3",
+    key: "client-zingmp3",
+    whitelist: [
+        "myPlaylists",
+        "mySongs",
+        "isRepeat",
+        "listMusic",
+        "infoSong",
+        "currentSong",
+    ],
 };
 
 const rootReducer = combineReducers({
     auth: persistReducer(authConfig, authReducer),
-    app: appReducer,
+    app: persistReducer(authConfig, appReducer),
 });
 
 export default rootReducer;

@@ -42,26 +42,28 @@ function LeftAlbum({
     }, [myPlaylists, id]);
 
     return (
-        <div className="col-span-2 overflow-hidden">
-            <div className="flex flex-col items-center gap-y-1 text-xs text-secondary text-center font-medium pr-6">
-                <div className="relative cursor-pointer group overflow-hidden rounded-md">
-                    <img
-                        alt=""
-                        className="transition-all ease-linear duration-300  group-hover:scale-110"
-                        src={img}
-                    />
-                    <div
-                        onClick={() => {
-                            dispatch(toggleMusic());
-                        }}
-                        className=" inset-0 transition-all bg-dark-alpha-50 justify-center items-center flex gap-x-5 text-3xl opacity-0 group-hover:opacity-100 absolute"
-                    >
-                        <button className="text-5xl text-white">
-                            {isPlay ? <BsPauseCircle /> : <BsPlayCircle />}
-                        </button>
-                    </div>
+        <div className="lg:col-span-2  lg:h-[100%] h-[50%] lg:mb-0 mb-4  lg:flex-col flex gap-x-7 overflow-hidden lg:justify-center items-center">
+            <div className="relative  flex  justify-center h-full items-center cursor-pointer group overflow-hidden rounded-md ">
+                <img
+                    alt=""
+                    className="transition-all w-full h-full  ease-linear duration-300  group-hover:scale-110 object-cover"
+                    src={img}
+                />
+
+                <div
+                    onClick={() => {
+                        dispatch(toggleMusic());
+                    }}
+                    className=" inset-0 transition-all bg-dark-alpha-50 justify-center items-center flex gap-x-5 text-3xl opacity-0 group-hover:opacity-100 absolute"
+                >
+                    <button className="text-5xl text-white">
+                        {isPlay ? <BsPauseCircle /> : <BsPlayCircle />}
+                    </button>
                 </div>
-                <span className="text-base uppercase text-center font-bold text-main mt-2">
+            </div>
+
+            <div className="flex flex-col gap-y-1  lg:items-center text-xs font-medium text-secondary">
+                <span className="text-base uppercase lg:text-center font-bold text-main mt-2">
                     {title}
                 </span>
                 <span>Cập nhập: {dateString} </span>
@@ -80,6 +82,7 @@ function LeftAlbum({
                     onClick={() => {
                         dispatch(toggleMusic());
                     }}
+                    className="flex lg:justify-center items-center"
                 >
                     {!isPlay ? (
                         <button className=" flex items-center bg-primary text-white px-6 py-2 rounded-full text-sm font-normal uppercase hover:brightness-90">

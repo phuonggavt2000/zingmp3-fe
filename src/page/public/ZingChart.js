@@ -107,7 +107,7 @@ function ZingChart() {
                 <div className="absolute inset-0 bg-newRelease "></div>
                 <div className="absolute w-full h-[2px]  -bottom-8 shadow-screen shadow-[0_10px_31px_76px_blue] "></div>
             </div>
-            <div className="relative z-20 px-16 pt-32 flex-col flex gap-y-6 font-medium">
+            <div className="relative z-20 md:px-16 md:pt-32 pt-24 px-6 flex-col flex gap-y-6 font-medium">
                 <div className="font-medium text-2xl flex items-center gap-x-4 ">
                     <span className="text-4xl capitalize font-extrabold">
                         #ZingChart
@@ -158,16 +158,21 @@ function ZingChart() {
                 </div>
 
                 <div className="absolute inset-0 bg-newRelease "></div>
-                <div className="relative z-10 px-16 py-16 flex-col flex gap-y-8">
+                <div className="relative z-10 md:px-16 py-16 px-6 flex-col flex gap-y-8">
                     <span className="text-5xl font-bold">Bảng xếp hạng</span>
-                    <div className="grid grid-cols-3 gap-x-6">
+                    <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 ">
                         {dataZingChart.coverWeekChart?.map((item, key) => (
                             <div key={key} className="bg-alpha py-3 rounded-md">
                                 <div className="flex items-center py-2 pl-6 gap-x-2">
                                     <span className="font-bold text-2xl">
                                         {item.title}
                                     </span>
-                                    <button className="p-1 text-lg bg-primary rounded-full">
+                                    <button
+                                        className="p-1 text-lg bg-primary rounded-full"
+                                        onClick={() => {
+                                            handleChangeSong(0, true, key);
+                                        }}
+                                    >
                                         <BsFillPlayFill />
                                     </button>
                                 </div>

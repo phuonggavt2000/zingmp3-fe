@@ -16,6 +16,7 @@ function NewMusic() {
     const [activeStatus, setActiveStatus] = useState(0);
     const [typeMusic, setTypeMusic] = useState("all");
     const [limitedMusics, setLimitedMusic] = useState([]);
+    const [widthWindow, setWidthWindow] = useState(window.innerWidth);
 
     const handleNavigate = (path = "/newMusic") => {
         navigate(path);
@@ -28,9 +29,28 @@ function NewMusic() {
 
     useEffect(() => {
         let dataMusics = newMusics[typeMusic] || [];
-        const limitedMusics = dataMusics.filter((music, index) => 12 > index);
+        let limitedMusics = [];
+        if (widthWindow < 1024 && widthWindow > 768) {
+            limitedMusics = dataMusics.filter((music, index) => 8 > index);
+        } else if (window.innerWidth < 768) {
+            limitedMusics = dataMusics.filter((music, index) => 6 > index);
+        } else {
+            limitedMusics = dataMusics.filter((music, index) => 12 > index);
+        }
         setLimitedMusic(limitedMusics);
-    }, [typeMusic, newMusics]);
+    }, [typeMusic, newMusics, widthWindow]);
+
+    useEffect(() => {
+        const detectResize = () => {
+            setWidthWindow(window.innerWidth);
+        };
+
+        window.addEventListener("resize", detectResize);
+
+        return () => {
+            window.addEventListener("resize", detectResize);
+        };
+    }, [widthWindow]);
 
     const handleChangeMusic = (index) => {
         const convertSong = limitedMusics.map((music) => {
@@ -71,7 +91,7 @@ function NewMusic() {
                         <button
                             key={index}
                             onClick={() => changeTypeMusic(index, value.type)}
-                            className={`outline-none  px-6 py-1 text-xs uppercase rounded-full ${
+                            className={`outline-none  px-6 py-1 text-xs uppercase whitespace-nowrap rounded-full ${
                                 index === activeStatus
                                     ? "bg-primary text-white"
                                     : "border border-alpha hover:brightness-90"
@@ -85,12 +105,12 @@ function NewMusic() {
                     onClick={() => {
                         handleNavigate();
                     }}
-                    className="ml-auto text-xs uppercase flex items-center gap-x-1 text-secondary hover:text-primary"
+                    className="ml-auto text-xs uppercase md:flex hidden items-center gap-x-1 text-secondary hover:text-primary"
                 >
                     <span>Tất cả</span> <AiOutlineRight className="text-base" />
                 </button>
             </div>
-            <div className="grid grid-cols-3 gap-x-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2">
                 {limitedMusics.map((newMusic, index) => {
                     return (
                         <Music

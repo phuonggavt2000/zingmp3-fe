@@ -107,8 +107,8 @@ function Album() {
     }, [idAlbum, dispatch]);
 
     return (
-        <div className="px-16 pt-16 w-full h-full">
-            <div className="grid grid-cols-6 w-full h-full overflow-hidden pt-10">
+        <div className="md:px-16 px-6 pt-16 w-full h-full">
+            <div className="lg:grid lg:grid-cols-7 w-full h-full lg:gap-x-8 pt-10">
                 <LeftAlbum
                     img={dataPlaylist?.img}
                     title={dataPlaylist?.title}

@@ -28,8 +28,8 @@ function Top100() {
                 <div className="absolute inset-0 bg-newRelease "></div>
                 <div className="absolute w-full h-[2px]  -bottom-8 shadow-screen shadow-[0_10px_31px_76px_blue] "></div>
             </div>
-            <div className="relative z-20 px-16  ">
-                <div className="px-60 py-20">
+            <div className="relative z-20 md:px-16 px-6 md:pd-0 pb-16">
+                <div className="px-60 md:py-20 py-6 ">
                     <img
                         src={images.logoTop}
                         className="w-full h-full"

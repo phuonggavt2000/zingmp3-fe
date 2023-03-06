@@ -116,7 +116,7 @@ function Artist() {
 
     return (
         <div className="mb-16">
-            <div className="bg-alpha px-16 ">
+            <div className="bg-alpha md:px-16 px-6">
                 <div className="flex pt-32 items-center pb-8">
                     <img
                         src={dataSinger.img}
@@ -160,7 +160,7 @@ function Artist() {
                     </div>
                 </div>
             </div>
-            <div className="px-16">
+            <div className="md:px-16 px-6">
                 <div className="flex flex-col gap-y-1">
                     <span className="font-bold text-xl mt-4">
                         {dataSinger.songSinger?.title}

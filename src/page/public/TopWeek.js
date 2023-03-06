@@ -56,18 +56,17 @@ function TopWeek() {
         setRenderTopWeek(convertDataTopWeek);
     }, [country, dataTopWeek]);
     return (
-
-        
-        <div className="h-full w-full overflow-hidden relative">
-            <div className="absolute inset-0">
+        <div className="relative">
+            <div className="absolute z-10 w-full">
                 <img
                     src={images.bannerZingChart2}
-                    className="h-full w-full brightness-50"
+                    className=" brightness-50 w-full"
                     alt=""
                 />
                 <div className="absolute inset-0 bg-newRelease "></div>
+                <div className="absolute w-full h-[2px]  -bottom-8 shadow-screen shadow-[0_10px_31px_76px_blue] "></div>
             </div>
-            <div className="absolute inset-0 z-10 pt-20 px-16 flex flex-col gap-y-7">
+            <div className="relative z-20 md:px-16 px-6 md:pt-32 pt-20">
                 <div className="pt-8 flex items-center font-bold text-3xl gap-x-2">
                     <span>Bảng xếp hạng Tuần </span>
                     <button
@@ -80,7 +79,7 @@ function TopWeek() {
                     </button>
                 </div>
 
-                <div className="flex items-center font-bold text-2xl gap-x-5">
+                <div className="flex items-center font-bold text-2xl gap-x-5 mt-4">
                     {typeTopWeek.map((item, index) => (
                         <span
                             key={index}

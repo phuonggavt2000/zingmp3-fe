@@ -34,14 +34,6 @@ function ControlMusic({ audio }) {
     };
 
     useEffect(() => {
-        if (isPLay) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    }, [isPLay, audio]);
-
-    useEffect(() => {
         dispatch(repeatSong(repeatMusic));
     }, [repeatMusic, dispatch]);
 
@@ -51,7 +43,7 @@ function ControlMusic({ audio }) {
                 onClick={handleRandomMusic}
                 className={`${
                     randomMusic ? "text-primary" : ""
-                } hover:bg-alpha h-[32px] w-[32px] rounded-full flex justify-center items-center`}
+                } hover:bg-alpha h-[32px] w-[32px] rounded-full md:flex hidden justify-center items-center`}
             >
                 <BiTransfer />
             </button>{" "}
@@ -62,7 +54,7 @@ function ControlMusic({ audio }) {
                 <ImPrevious2 />
             </button>{" "}
             <button
-                className="text-4xl hover:text-primary "
+                className="md:text-4xl text-2xl hover:text-primary "
                 onClick={() => dispatch(toggleMusic())}
             >
                 {!isLoadingMusic &&
@@ -79,7 +71,7 @@ function ControlMusic({ audio }) {
                 onClick={handleRepeatMusic}
                 className={`${
                     repeatMusic ? "text-primary" : ""
-                } hover:bg-alpha h-[32px] w-[32px] rounded-full flex justify-center items-center`}
+                } hover:bg-alpha h-[32px] w-[32px] rounded-full md:flex hidden justify-center items-center`}
             >
                 <MdOutlineRepeat />
             </button>

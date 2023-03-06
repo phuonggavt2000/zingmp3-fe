@@ -8,7 +8,7 @@ function MusicPartner() {
                     Đối tác âm nhạc
                 </span>
             </div>
-            <div className="grid grid-cols-8 mt-8 gap-6">
+            <div className="grid lg:grid-cols-8 grid-cols-4 mt-8 gap-6">
                 {panertImgs.map((item, index) => (
                     <div
                         key={index}

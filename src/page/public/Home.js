@@ -16,7 +16,7 @@ function Home() {
     const hAlbum = useSelector((state) => state.app.hAlbum);
 
     return (
-        <div className="px-16 mt-14">
+        <div className="md:px-16 px-6 lg:mt-28 mt-24">
             <Slider />
             <NewMusic />
             <Playlist playlist={hAutoTheme1} />

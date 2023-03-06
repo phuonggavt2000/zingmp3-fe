@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../../asset/logo.svg";
+import logoMobile from "../../asset/logoMoblie.svg";
 import { primaryMenu, subMenu } from "../../ultis/menuSidebar";
 import { AiOutlinePlus } from "react-icons/ai";
 import { memo } from "react";
@@ -10,14 +11,24 @@ function LeftSidebar() {
             className=" flex-auto w-full flex flex-col pointer-events-auto text-[14px] font-bold h-[calc(100vh-90px)]"
             draggable={false}
         >
-            <div className="h-[70px] w-full px-7 flex  items-center ">
+            <Link
+                to="/"
+                className="w-full xl:px-7 md:px-2 md:h-[70px] flex  items-center xl:justify-start md:justify-center"
+                draggable={false}
+            >
                 <img
                     src={logo}
                     alt="error"
-                    className="w-[120px] h-[40px] "
+                    className="w-[120px] h-[40px] xl:flex hidden"
                     draggable={false}
                 />
-            </div>
+                <img
+                    src={logoMobile}
+                    alt="error"
+                    className="w-[45px] h-[45px] xl:hidden md:flex hidden"
+                    draggable={false}
+                />
+            </Link>
             <div className=" pb-5">
                 {primaryMenu.map((menu, index) => {
                     const Icon = menu.icon;
@@ -30,8 +41,10 @@ function LeftSidebar() {
                             }
                             draggable={false}
                         >
-                            <Icon />
-                            <span className="px-4 ">{menu.title}</span>
+                            <Icon className="md:text-xl" />
+                            <span className="px-4 xl:inline-block hidden">
+                                {menu.title}
+                            </span>
                         </NavLink>
                     );
                 })}
@@ -49,12 +62,14 @@ function LeftSidebar() {
                             draggable={false}
                         >
                             <Icon />
-                            <span className="px-4 ">{menu.title}</span>
+                            <span className="px-4 xl:inline-block hidden">
+                                {menu.title}
+                            </span>
                         </NavLink>
                     );
                 })}{" "}
             </div>
-            <div className=" w-full gap-x-2 mt-auto p-4 flex items-center justify-center text-[15px] font-semibold border-t border-alpha ">
+            <div className=" w-full gap-x-2 mt-auto p-4 xl:flex hidden items-center justify-center text-[15px] font-semibold border-t border-alpha ">
                 {<AiOutlinePlus className=" text-[20px]" />}
                 <span> Tạo playlist mới</span>
             </div>

@@ -49,7 +49,7 @@ function NewMusic() {
                 <div className="absolute inset-0 bg-newRelease "></div>
                 <div className="absolute w-full h-[2px]  -bottom-8 shadow-screen shadow-[0_10px_31px_76px_blue] "></div>
             </div>
-            <div className="relative z-20 px-16 pt-32">
+            <div className="relative z-20 md:px-16 px-6 md:pt-32 pt-24">
                 <div className="font-medium text-2xl flex items-center gap-x-4 ">
                     <span className="text-4xl capitalize font-extrabold">
                         Nhạc mới

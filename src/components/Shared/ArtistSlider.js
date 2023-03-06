@@ -10,6 +10,20 @@ function ArtistSlider({ items, title }) {
         speed: 500,
         slidesToShow: items?.length < 6 ? items?.length : 6,
         slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    infinite: true,
+                    speed: 1500,
+                    slidesToShow: items?.length < 4 ? items?.length : 4,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    cssEase: "linear",
+                },
+            },
+        ],
     };
     return (
         <div className="mt-12">

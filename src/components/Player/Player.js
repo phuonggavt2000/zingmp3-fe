@@ -16,10 +16,10 @@ function Player() {
     const currentVolume = (1 / 100) * volumeValue;
     return (
         <div className=" h-full flex px-4 z-50">
-            <div className="flex items-center h-full gap-x-3 basis-[30%] overflow-hidden">
+            <div className="flex items-center h-full gap-x-3 md:basis-[30%] w-full overflow-hidden">
                 <img
                     alt=""
-                    className="h-[64px] w-[64px] rounded-lg"
+                    className="md:h-[64px] md:w-[64px] w-[40px] h-[40px] rounded-lg"
                     src={infoSong.img}
                 />
                 <div className="flex flex-col font-semibold">
@@ -45,7 +45,7 @@ function Player() {
             <div className="basis-[40%] flex">
                 <CenterPlayer currentVolume={currentVolume} />
             </div>
-            <div className="basis-[30%] flex justify-center items-center text-lg">
+            <div className="md:basis-[30%] w-full md:flex justify-center items-center text-lg hidden">
                 <button className="flex items-center">
                     <BsVolumeUp />
                     <input

@@ -16,7 +16,7 @@ function RightAlbum({ titleRight }, ref) {
     };
 
     return (
-        <div className="col-span-4 text-secondary text-sm font-medium h-full overflow-hidden hover:overlay">
+        <div className="col-span-5 text-secondary text-sm font-medium h-full lg:overflow-hidden lg:hover:overlay">
             <div className="flex ">
                 <span className="ml-1 text-main">
                     <span className="whitespace-nowrap text-secondary mr-1">

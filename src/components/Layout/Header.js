@@ -17,16 +17,16 @@ function Header({ scrollTop }) {
 
     return (
         <div
-            className={`fixed transition-all  top-0 right-0 w-[calc(100vw-240px)] h-[70px] z-30 ${
+            className={`fixed transition-all  top-0 right-0 xl:w-[calc(100vw-240px)] md:w-[calc(100vw-70px)] w-screen h-[70px] z-30 ${
                 scrollTop > 60 ? "bg-header shadow-lg" : "bg-transparent "
             }`}
         >
-            <div className="flex h-full px-14 items-center gap-2  select-none">
-                <div className="flex text-[23px] gap-2 text-gray-400">
+            <div className="flex h-full md:px-14 px-6 items-center gap-2  select-none">
+                <div className="md:flex text-[23px] gap-2 hidden text-gray-400">
                     <ImPrevious2 />
                     <ImNext2 />
                 </div>
-                <div className="basis-1/2 pr-4">
+                <div className="md:basis-1/2 w-full pr-4">
                     <Search />
                 </div>
                 <div className="ml-auto flex">
@@ -37,7 +37,7 @@ function Header({ scrollTop }) {
                             placement="top"
                         >
                             <div
-                                className="h-[40px] w-[40px] hover:opacity-80 flex justify-center items-center bg-alpha rounded-full cursor-pointer mx-2"
+                                className="h-[40px] w-[40px] hover:opacity-80 md:[&:nth-child(3)]:flex md:[&:nth-child(2)]:flex  [&:nth-child(3)]:hidden [&:nth-child(2)]:hidden flex  justify-center items-center   bg-alpha rounded-full cursor-pointer mx-2"
                                 onClick={() => handleModalTheme(value.modal)}
                             >
                                 {value.icon}

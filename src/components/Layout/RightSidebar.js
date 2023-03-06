@@ -47,7 +47,7 @@ function RightSidebar() {
                     <button className="h-full w-full bg-alpha rounded-full">
                         Danh sách phát
                     </button>
-                    <button className="h-full w-full bg-alpha rounded-full">
+                    <button className="h-full w-full  rounded-full">
                         Nghe gần đây
                     </button>
                 </div>

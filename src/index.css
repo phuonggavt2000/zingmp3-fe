@@ -4,10 +4,10 @@
 
 @layer components {
     .active-sidebar {
-        @apply px-7 flex items-center py-2 hover:text-nav  bg-alpha text-nav border-l-4 border-primary;
+        @apply xl:px-7 flex items-center xl:justify-start justify-center py-3 xl:py-2 hover:text-nav  bg-alpha text-nav border-l-4 border-primary;
     }
     .inactive-sidebar {
-        @apply px-7 flex items-center py-2 border-l-4 hover:text-nav border-transparent text-nav-text;
+        @apply xl:px-7 flex items-center xl:justify-start justify-center py-3  xl:py-2 border-l-4 hover:text-nav border-transparent text-nav-text;
     }
     .link-artist {
         @apply text-secondary comma cursor-pointer;
@@ -18,6 +18,26 @@
 
     .btn-primary {
         @apply rounded-full p-2 hover:bg-alpha;
+    }
+
+    .prev-slider {
+        @apply -translate-x-full z-[10] opacity-100;
+    }
+
+    .current-slider {
+        @apply z-[10] opacity-100;
+    }
+
+    .next-slider {
+        @apply translate-x-full z-[10] opacity-100;
+    }
+
+    .hidden-slider .next-slider {
+        display: none;
+    }
+
+    .show-slider .next-slider {
+        display: block;
     }
 
     .range::-webkit-slider-thumb {
