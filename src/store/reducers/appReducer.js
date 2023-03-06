@@ -1,4 +1,5 @@
 import actionTypes from "../actions/actionTypes";
+import { staticinfoSong } from "../../ultis/staticData";
 
 const initState = {
     currentSong: 0,
@@ -17,7 +18,7 @@ const initState = {
     hArtistTheme2: {},
     hArtistTheme: {},
     dataPlaylist: {},
-    infoSong: {},
+    infoSong: { ...staticinfoSong },
     searchData: {},
     hNewrelease: {},
     hAlbum: {},
