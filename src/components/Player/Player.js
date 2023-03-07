@@ -9,7 +9,6 @@ import { toggleRightSidebar } from "../../store/actions";
 function Player() {
     const { CgMoreAlt, BsVolumeUp, BsMusicNoteList } = icons;
     const infoSong = useSelector((state) => state.app.infoSong);
-    console.log("infoSong:", infoSong);
     const isRightSidebar = useSelector((state) => state.app.isRightSidebar);
     const dispatch = useDispatch();
 
