@@ -8,6 +8,8 @@ import { listMusic, updateSong } from "../../store/actions";
 
 function NewMusic() {
     const newMusics = useSelector((state) => state.app.newMusic);
+    const currentSong = useSelector((state) => state.app.currentSong);
+    console.log("currentSong:", currentSong);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,6 +27,21 @@ function NewMusic() {
     const changeTypeMusic = (index, type) => {
         setActiveStatus(index);
         setTypeMusic(type);
+    };
+
+    const handleChangeMusic = (index) => {
+        const convertSong = limitedMusics.map((music) => {
+            return {
+                id: music.encodeId,
+                name: music.title,
+                img: music.thumbnail,
+                duration: music.duration,
+                artists: music.artists,
+            };
+        });
+        dispatch(updateSong(index));
+
+        dispatch(listMusic(convertSong));
     };
 
     useEffect(() => {
@@ -51,21 +68,6 @@ function NewMusic() {
             window.addEventListener("resize", detectResize);
         };
     }, [widthWindow]);
-
-    const handleChangeMusic = (index) => {
-        const convertSong = limitedMusics.map((music) => {
-            return {
-                id: music.encodeId,
-                name: music.title,
-                img: music.thumbnail,
-                duration: music.duration,
-                artists: music.artists,
-            };
-        });
-        dispatch(updateSong(index));
-
-        dispatch(listMusic(convertSong));
-    };
 
     const selectStatus = [
         {

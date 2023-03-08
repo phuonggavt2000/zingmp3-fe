@@ -30,6 +30,7 @@ function SongAlbum({
     const dispatch = useDispatch();
 
     const [isLike, setIsLike] = useState(false);
+    const [isActive, setIsActive] = useState(false);
 
     const { BsMusicNoteBeamed, AiFillHeart, AiOutlineHeart } = icons;
     const durationFormat = moment
@@ -39,6 +40,8 @@ function SongAlbum({
     const isPlay = useSelector((state) => state.app.isPlay);
     const id = useSelector((state) => state.app.infoSong.id);
     const mySongs = useSelector((state) => state.app.mySongs);
+    const isLoadingMusic = useSelector((state) => state.app.isLoadingMusic);
+    const currentSong = useSelector((state) => state.app.currentSong);
 
     const isPlaying = id === idSong && isPlay;
 
@@ -81,12 +84,19 @@ function SongAlbum({
         setIsLike(isLikes);
     }, [mySongs, idSong]);
 
+    useEffect(() => {
+        const checkActive = currentSong === index;
+        setIsActive(checkActive);
+    }, [currentSong, index]);
+
     return (
         <div
             className={`song-album w-full font-medium px-6 group relative py-2 ${
                 rightSideBar ? "border-none" : "border-b grid-cols-6 grid"
             } border-alpha   ${
-                id === idSong
+                id === idSong && !isLoadingMusic
+                    ? `${rightSideBar ? "bg-primary" : "bg-alpha"} rounded-md`
+                    : isActive && isLoadingMusic
                     ? `${rightSideBar ? "bg-primary" : "bg-alpha"} rounded-md`
                     : " hover:bg-alpha hover:rounded-md "
             } `}
@@ -125,6 +135,7 @@ function SongAlbum({
                         isPlaying={isPlaying}
                         id={id}
                         idSong={idSong}
+                        isActive={isActive}
                     />
                     <div className="capitalize w-4/5 truncate">
                         <span className="text-main whitespace-nowrap text-sm  truncate overflow-hidden">

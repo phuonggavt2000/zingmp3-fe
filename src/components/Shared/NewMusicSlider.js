@@ -6,6 +6,7 @@ import moment from "moment";
 import { listMusic, updateSong, toggleMusic } from "../../store/actions";
 
 function NewMusicSlider({ hNewrelease }) {
+    console.log("hNewrelease:");
     const { BsFillPlayFill, BsPauseFill } = icons;
     const dispatch = useDispatch();
     const settings = {
@@ -64,75 +65,77 @@ function NewMusicSlider({ hNewrelease }) {
             <span className="font-bold text-xl mb-4 inline-block">
                 {hNewrelease.title}
             </span>
-            <Slider {...settings}>
-                {hNewrelease.items?.map((item, index) => {
-                    const isPlaying = id === item.encodeId && isPlay;
-                    return (
-                        <div key={index} className="px-2">
-                            <div className="flex items-center gap-x-4 bg-alpha p-4 rounded-md overflow-hidden">
-                                <div
-                                    onClick={() => {
-                                        if (isPlaying) {
-                                            dispatch(toggleMusic());
-                                        } else if (id === item.encodeId) {
-                                            dispatch(toggleMusic());
-                                        } else {
-                                            handleChangeMusic(index);
-                                        }
-                                    }}
-                                    className="h-[120px] w-[120px] rounded-md overflow-hidden relative group cursor-pointer shrink-0"
-                                >
-                                    <img
-                                        alt=""
-                                        className="group h-full w-full group-hover:scale-110 transition-all duration-500"
-                                        src={item.thumbnail}
-                                    />
+            {!!hNewrelease.items?.length && (
+                <Slider {...settings}>
+                    {hNewrelease.items?.map((item, index) => {
+                        const isPlaying = id === item.encodeId && isPlay;
+                        return (
+                            <div key={index} className="px-2">
+                                <div className="flex items-center gap-x-4 bg-alpha p-4 rounded-md overflow-hidden">
                                     <div
-                                        className={`${
-                                            isPlaying ? "flex" : "hidden"
-                                        } absolute  group-hover:flex inset-0 bg-dark-alpha-50  items-center justify-center`}
+                                        onClick={() => {
+                                            if (isPlaying) {
+                                                dispatch(toggleMusic());
+                                            } else if (id === item.encodeId) {
+                                                dispatch(toggleMusic());
+                                            } else {
+                                                handleChangeMusic(index);
+                                            }
+                                        }}
+                                        className="h-[120px] w-[120px] rounded-md overflow-hidden relative group cursor-pointer shrink-0"
                                     >
-                                        {isPlaying ? (
-                                            <BsPauseFill className="text-5xl" />
-                                        ) : (
-                                            <BsFillPlayFill className="text-5xl" />
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col font-medium gap-y-6 w-full">
-                                    <div className="flex-col flex">
-                                        <span className="font-bold text-base  line-clamp-1">
-                                            {item.title}
-                                        </span>
-                                        <div className="text-xs">
-                                            {item.artists?.map(
-                                                (item, index) => (
-                                                    <Artist
-                                                        link={item.link}
-                                                        name={item.name}
-                                                        key={index}
-                                                    />
-                                                )
+                                        <img
+                                            alt=""
+                                            className="group h-full w-full group-hover:scale-110 transition-all duration-500"
+                                            src={item.thumbnail}
+                                        />
+                                        <div
+                                            className={`${
+                                                isPlaying ? "flex" : "hidden"
+                                            } absolute  group-hover:flex inset-0 bg-dark-alpha-50  items-center justify-center`}
+                                        >
+                                            {isPlaying ? (
+                                                <BsPauseFill className="text-5xl" />
+                                            ) : (
+                                                <BsFillPlayFill className="text-5xl" />
                                             )}
                                         </div>
                                     </div>
-                                    <div className="flex items-center">
-                                        <span className="text-new text-4xl  font-black">
-                                            {`#${index + 1}`}
-                                        </span>
-                                        <span className="ml-auto text-secondary text-sm">
-                                            {moment
-                                                .unix(item.releaseDate)
-                                                .format("MM/DD/YYYY")}
-                                        </span>
+
+                                    <div className="flex flex-col font-medium gap-y-6 w-full">
+                                        <div className="flex-col flex">
+                                            <span className="font-bold text-base  line-clamp-1">
+                                                {item.title}
+                                            </span>
+                                            <div className="text-xs">
+                                                {item.artists?.map(
+                                                    (item, index) => (
+                                                        <Artist
+                                                            link={item.link}
+                                                            name={item.name}
+                                                            key={index}
+                                                        />
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <span className="text-new text-4xl  font-black">
+                                                {`#${index + 1}`}
+                                            </span>
+                                            <span className="ml-auto text-secondary text-sm">
+                                                {moment
+                                                    .unix(item.releaseDate)
+                                                    .format("MM/DD/YYYY")}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    );
-                })}
-            </Slider>
+                        );
+                    })}
+                </Slider>
+            )}
         </div>
     );
 }

@@ -20,6 +20,7 @@ const authConfig = {
         "listMusic",
         "infoSong",
         "currentSong",
+        "theme",
     ],
 };
 

@@ -19,14 +19,17 @@ function Music({
     searchAll,
     musicSearch,
 }) {
-    const { FaPlay, FaPause, AiOutlineHeart, AiFillHeart } = icons;
+    const { FaPlay, FaPause, AiOutlineHeart, AiFillHeart, BiLoader } = icons;
     const dispatch = useDispatch();
 
     const [isLike, setIsLike] = useState(false);
+    const [isActive, setIsActive] = useState(false);
 
     const id = useSelector((state) => state.app.infoSong.id);
     const isPlay = useSelector((state) => state.app.isPlay);
     const isLoadingMusic = useSelector((state) => state.app.isLoadingMusic);
+    const currentSong = useSelector((state) => state.app.currentSong);
+    console.log("isLoadingMusic:", isLoadingMusic);
     const mySongs = useSelector((state) => state.app.mySongs);
 
     const isPlaying = id === idSong && isPlay;
@@ -62,10 +65,18 @@ function Music({
         const isLikes = convertIdSongs?.includes(idSong);
         setIsLike(isLikes);
     }, [mySongs, idSong]);
+    useEffect(() => {
+        const checkActive = index === currentSong;
+        setIsActive(checkActive);
+    }, [currentSong, index]);
     return (
         <div
             className={`flex relative items-center gap-x-2  group hover:bg-alpha rounded-md text-white overflow-hidden ${
-                id === idSong ? "bg-alpha" : ""
+                id === idSong && !isLoadingMusic
+                    ? "bg-alpha"
+                    : isActive && isLoadingMusic
+                    ? "bg-alpha"
+                    : ""
             } ${search ? "p-2" : searchAll ? "p-2 bg-alpha" : "p-3"}`}
         >
             <div
@@ -83,10 +94,15 @@ function Music({
                 <img alt="" src={img} className=" " />
                 <div
                     className={`absolute cursor-pointer opacity-0 group-hover:opacity-100 inset-0 h-full w-full z-10 bg-dark-alpha-50 flex items-center justify-center ${
-                        id === idSong ? "opacity-100 " : ""
+                        id === idSong && !isLoadingMusic
+                            ? "opacity-100 "
+                            : isActive && isLoadingMusic
+                            ? "opacity-100 "
+                            : ""
                     }`}
                 >
-                    {isPlaying ? <FaPause /> : <FaPlay />}
+                    {!isLoadingMusic && (isPlaying ? <FaPause /> : <FaPlay />)}
+                    {isLoadingMusic && <BiLoader className="animate-spin" />}
                 </div>
             </div>
 

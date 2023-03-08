@@ -36,19 +36,21 @@ function RightAlbum({ titleRight }, ref) {
                 </div>
 
                 <div ref={ref}>
-                    {listMusic?.map((music, index) => (
-                        <SongAlbum
-                            key={index}
-                            title={music.name}
-                            duration={music.duration}
-                            album={music.album}
-                            artists={music.artists}
-                            img={music.img}
-                            idSong={music.id}
-                            index={index}
-                            handleChangeSong={handleChangeSong}
-                        />
-                    ))}
+                    {listMusic?.map((music, index) => {
+                        return (
+                            <SongAlbum
+                                key={index}
+                                title={music.name}
+                                duration={music.duration}
+                                album={music.album}
+                                artists={music.artists}
+                                img={music.img}
+                                idSong={music.id}
+                                index={index}
+                                handleChangeSong={handleChangeSong}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>
