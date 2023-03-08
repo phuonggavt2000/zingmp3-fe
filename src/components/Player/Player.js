@@ -23,7 +23,7 @@ function Player() {
                     src={infoSong.img}
                 />
                 <div className="flex flex-col font-semibold">
-                    <span className="text-sm whitespace-nowrap">
+                    <span className="text-sm whitespace-nowrap capitalize">
                         {infoSong.name}
                     </span>
                     <div className="text-xs">
